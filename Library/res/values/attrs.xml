@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!--psts-->
+    <declare-styleable name="RowLayout">
+        <attr name="android:horizontalSpacing"/>
+    </declare-styleable>
+    <declare-styleable name="TaberLayout">
+        <attr name="tabBackground" format="reference"/>
+        <attr name="animTime" format="reference|integer"/>
+    </declare-styleable>
+    <declare-styleable name="PagerSlidingTabStrip">
+        <attr name="indicatorColor" format="color"/>
+        <attr name="underlineColor" format="color"/>
+        <attr name="dividerColor" format="color"/>
+        <attr name="indicatorHeight" format="dimension"/>
+        <attr name="underlineHeight" format="dimension"/>
+        <attr name="psts_dividerPadding" format="dimension"/>
+        <attr name="tabPaddingLeftRight" format="dimension"/>
+        <attr name="tabPaddingTopBottom" format="dimension"/>
+        <attr name="scrollOffset" format="dimension"/>
+        <attr name="ptabBackground" format="reference"/>
+        <attr name="shouldExpand" format="boolean"/>
+        <attr name="psts_textAllCaps" format="boolean"/>
+    </declare-styleable>
+
+</resources>
