@@ -60,6 +60,7 @@ public class NormalTabActivity extends ActionBarActivity implements ViewPager.On
         adapter.notifyDataSetChanged();
         mAPSTS.setViewPager(mVP);
         mAPSTS.setOnPageChangeListener(this);
+        mAPSTS.showDot(VIEW_FIRST);
     }
 
     @Override
