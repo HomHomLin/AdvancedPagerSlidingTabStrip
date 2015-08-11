@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.lhh.apst.advancedpagerslidingtabstrip.R;
 
 /**
- * Created by kascend on 2015/8/11.
+ * Created by linhonghong on 2015/8/11.
  */
 public class FourthFragment extends Fragment {
 

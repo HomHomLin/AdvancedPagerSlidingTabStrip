@@ -15,7 +15,7 @@ import com.lhh.apst.fragments.ThirdFragment;
 import com.lhh.apst.library.AdvancedPagerSlidingTabStrip;
 
 /**
- * Created by kascend on 2015/8/11.
+ * Created by linhonghong on 2015/8/11.
  */
 public class IconTabActivity extends ActionBarActivity implements ViewPager.OnPageChangeListener{
 
