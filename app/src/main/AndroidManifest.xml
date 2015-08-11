@@ -16,6 +16,16 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
+        <activity
+            android:name=".NormalTabActivity"
+            android:label="@string/app_name" >
+        </activity>
+
+        <activity
+            android:name=".IconTabActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

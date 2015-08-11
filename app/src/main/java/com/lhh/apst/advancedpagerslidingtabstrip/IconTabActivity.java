@@ -1,6 +1,5 @@
 package com.lhh.apst.advancedpagerslidingtabstrip;
 
-import android.app.Activity;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
@@ -8,9 +7,6 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
-import android.view.View;
-import android.view.ViewGroup;
-import android.widget.BaseAdapter;
 
 import com.lhh.apst.fragments.FirstFragment;
 import com.lhh.apst.fragments.FourthFragment;
@@ -19,9 +15,9 @@ import com.lhh.apst.fragments.ThirdFragment;
 import com.lhh.apst.library.AdvancedPagerSlidingTabStrip;
 
 /**
- * Created by linhonghong on 2015/8/10.
+ * Created by kascend on 2015/8/11.
  */
-public class NormalTabActivity extends ActionBarActivity implements ViewPager.OnPageChangeListener{
+public class IconTabActivity extends ActionBarActivity implements ViewPager.OnPageChangeListener{
 
     public AdvancedPagerSlidingTabStrip mAPSTS;
     public APSTSViewPager mVP;
@@ -41,7 +37,7 @@ public class NormalTabActivity extends ActionBarActivity implements ViewPager.On
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_normal_tab);
+        setContentView(R.layout.activity_icon_tab);
         findViews();
         init();
     }
@@ -60,6 +56,7 @@ public class NormalTabActivity extends ActionBarActivity implements ViewPager.On
         adapter.notifyDataSetChanged();
         mAPSTS.setViewPager(mVP);
         mAPSTS.setOnPageChangeListener(this);
+        mVP.setCurrentItem(VIEW_FIRST);
     }
 
     @Override
@@ -77,7 +74,7 @@ public class NormalTabActivity extends ActionBarActivity implements ViewPager.On
 
     }
 
-    public class FragmentAdapter extends FragmentStatePagerAdapter {
+    public class FragmentAdapter extends FragmentStatePagerAdapter implements AdvancedPagerSlidingTabStrip.IconTabProvider{
 
         public FragmentAdapter(FragmentManager fm) {
             super(fm);
@@ -119,7 +116,7 @@ public class NormalTabActivity extends ActionBarActivity implements ViewPager.On
         }
 
         @Override
-        public CharSequence getPageTitle(int position) {
+        public String getPageIconText(int position) {
             if(position >= 0 && position < VIEW_SIZE){
                 switch (position){
                     case  VIEW_FIRST:
@@ -135,6 +132,44 @@ public class NormalTabActivity extends ActionBarActivity implements ViewPager.On
                 }
             }
             return null;
+        }
+
+        @Override
+        public int getPageIconResId(int index) {
+            if(index >= 0 && index < VIEW_SIZE){
+                switch (index){
+                    case  VIEW_FIRST:
+                        return  R.mipmap.home_main_icon_n;
+                    case VIEW_SECOND:
+                        return  R.mipmap.home_categry_icon_n;
+                    case VIEW_THIRD:
+                        return  R.mipmap.home_live_icon_n;
+                    case VIEW_FOURTH:
+                        return  R.mipmap.home_mine_icon_n;
+                    default:
+                        break;
+                }
+            }
+            return 0;
+        }
+
+        @Override
+        public int getPageIconSelectResId(int index) {
+            if(index >= 0 && index < VIEW_SIZE){
+                switch (index){
+                    case  VIEW_FIRST:
+                        return  R.mipmap.home_main_icon_f_n;
+                    case VIEW_SECOND:
+                        return  R.mipmap.home_categry_icon_f_n;
+                    case VIEW_THIRD:
+                        return  R.mipmap.home_live_icon_f_n;
+                    case VIEW_FOURTH:
+                        return  R.mipmap.home_mine_icon_f_n;
+                    default:
+                        break;
+                }
+            }
+            return 0;
         }
     }
 }

@@ -1,19 +1,19 @@
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
     android:layout_height="match_parent" android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
     android:paddingTop="@dimen/activity_vertical_margin"
     android:paddingBottom="@dimen/activity_vertical_margin" tools:context=".MainActivity">
-    <com.lhh.apst.library.AdvancedPagerSlidingTabStrip
-        android:id="@+id/tabs"
+    <Button
+        android:id="@+id/noramltab"
         android:layout_width="match_parent"
-        android:layout_height="42dp"
-        style="@style/pagertab_style"
-        android:fillViewport="false"/>
-
-    <com.lhh.apst.advancedpagerslidingtabstrip.APSTSViewPager
-        android:id="@+id/vp_main"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
-        android:layout_below="@+id/tabs"/>
-</RelativeLayout>
+        android:layout_height="wrap_content"
+        android:text="start noraml tab activity"/>
+    <Button
+        android:id="@+id/icontab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="start icon tab activity"/>
+</LinearLayout>

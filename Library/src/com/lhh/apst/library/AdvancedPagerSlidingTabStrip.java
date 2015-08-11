@@ -219,6 +219,8 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
             }
         });
 
+        pageListener.onPageSelected(0);//default
+
     }
 
     private void addTextTab(final int position, String title) {

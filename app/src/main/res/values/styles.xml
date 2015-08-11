@@ -23,4 +23,18 @@
         <item name="tabPaddingLeftRight">8dp</item>
     </style>
 
+    <style name="pagertab_icon_style">
+        <item name="android:background">@drawable/tab_bg_normal</item>
+        <item name="ptabBackground">@drawable/tab_bg_normal</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@drawable/tab_color_select</item>
+        <item name="android:textAppearance">@style/CustomTabPageIndicator.Text</item>
+        <item name="indicatorColor">@color/home_bar_text_push</item>
+        <item name="underlineColor">#1A000000</item>
+        <item name="dividerColor">#00000000</item>
+        <item name="shouldExpand">false</item>
+        <item name="tabPaddingLeftRight">8dp</item>
+        <item name="tabPaddingTopBottom">6dp</item>
+    </style>
+
 </resources>

@@ -107,9 +107,6 @@
       <Port>5050</Port>
     </configuration>
   </component>
-  <component name="SvnBranchConfigurationManager">
-    <option name="mySupportsUserInfoFilter" value="true" />
-  </component>
   <component name="masterDetails">
     <states>
       <state key="ProjectJDKs.UI">
