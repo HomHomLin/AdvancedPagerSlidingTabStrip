@@ -79,6 +79,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 
     private int tabTextSize = 15;
     private int tabTextColor = 0xFF666666;
+    private int tabTextSelectColor = 0xFF666666;
     private Typeface tabTypeface = null;
     private int tabTypefaceStyle = Typeface.NORMAL;
 
@@ -144,6 +145,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         shouldExpand = a.getBoolean(R.styleable.PagerSlidingTabStrip_shouldExpand, shouldExpand);
         scrollOffset = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_scrollOffset, scrollOffset);
         textAllCaps = a.getBoolean(R.styleable.PagerSlidingTabStrip_psts_textAllCaps, textAllCaps);
+        tabTextSelectColor = a.getColor(R.styleable.PagerSlidingTabStrip_tabTextSelectColor, dividerColor);
 
         a.recycle();
 
@@ -483,7 +485,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
             for (int i = 0; i < tabsContainer.getChildCount(); i++) {
                 if (i == position) {
                     LinearLayout linearLayout = ((LinearLayout) tabsContainer.getChildAt(i));
-                    ((TextView) linearLayout.getChildAt(0)).setTextColor(indicatorColor);
+                    ((TextView) linearLayout.getChildAt(0)).setTextColor(tabTextSelectColor);
                     if (pager.getAdapter() instanceof IconTabProvider) {
                         ((TextView) linearLayout.getChildAt(0)).setCompoundDrawablesWithIntrinsicBounds(0, ((IconTabProvider) pager.getAdapter()).getPageIconSelectResId(i), 0, 0);
                     }
