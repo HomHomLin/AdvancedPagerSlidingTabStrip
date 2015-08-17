@@ -72,6 +72,7 @@ AdvancedPagerSlidingTabStrip支持绑定OnPageChangeListener，并且不影响�
  * `tabBackground` Background drawable of each tab, should be a StateListDrawable
  * `shouldExpand` If set to true, each tab is given the same weight, default false
  * `textAllCaps` If true, all tab titles will be upper case, default true
+ * `tabTextSelectColor` Color of the tab text which you select
 
 # 更新日志
 
