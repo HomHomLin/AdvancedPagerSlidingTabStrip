@@ -482,30 +482,35 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 
         @Override
         public void onPageSelected(int position) {
-            for (int i = 0; i < tabsContainer.getChildCount(); i++) {
-                if (i == position) {
-                    LinearLayout linearLayout = ((LinearLayout) tabsContainer.getChildAt(i));
-                    ((TextView) linearLayout.getChildAt(0)).setTextColor(tabTextSelectColor);
-                    if (pager.getAdapter() instanceof IconTabProvider) {
-                        ((TextView) linearLayout.getChildAt(0)).setCompoundDrawablesWithIntrinsicBounds(0, ((IconTabProvider) pager.getAdapter()).getPageIconSelectResId(i), 0, 0);
-                    }
-//                    ((TextView) linearLayout.getChildAt(0)).setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.home_categry_icon_f_n, 0, 0);
-                } else {
-                    LinearLayout linearLayout = ((LinearLayout) tabsContainer.getChildAt(i));
-                    ((TextView) linearLayout.getChildAt(0)).setTextColor(tabTextColor);
-                    if (pager.getAdapter() instanceof IconTabProvider) {
-                        ((TextView) linearLayout.getChildAt(0)).setCompoundDrawablesWithIntrinsicBounds(0, ((IconTabProvider) pager.getAdapter()).getPageIconResId(i), 0, 0);
-                    }
-//                    ((TextView) linearLayout.getChildAt(0)).setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.home_categry_icon_n, 0, 0);
 
-                }
-            }
+            setSelectItem(position);
 
             if (delegatePageListener != null) {
                 delegatePageListener.onPageSelected(position);
             }
         }
 
+    }
+
+    public void setSelectItem(int position){
+        for (int i = 0; i < tabsContainer.getChildCount(); i++) {
+            if (i == position) {
+                LinearLayout linearLayout = ((LinearLayout) tabsContainer.getChildAt(i));
+                ((TextView) linearLayout.getChildAt(0)).setTextColor(tabTextSelectColor);
+                if (pager.getAdapter() instanceof IconTabProvider) {
+                    ((TextView) linearLayout.getChildAt(0)).setCompoundDrawablesWithIntrinsicBounds(0, ((IconTabProvider) pager.getAdapter()).getPageIconSelectResId(i), 0, 0);
+                }
+//                    ((TextView) linearLayout.getChildAt(0)).setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.home_categry_icon_f_n, 0, 0);
+            } else {
+                LinearLayout linearLayout = ((LinearLayout) tabsContainer.getChildAt(i));
+                ((TextView) linearLayout.getChildAt(0)).setTextColor(tabTextColor);
+                if (pager.getAdapter() instanceof IconTabProvider) {
+                    ((TextView) linearLayout.getChildAt(0)).setCompoundDrawablesWithIntrinsicBounds(0, ((IconTabProvider) pager.getAdapter()).getPageIconResId(i), 0, 0);
+                }
+//                    ((TextView) linearLayout.getChildAt(0)).setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.home_categry_icon_n, 0, 0);
+
+            }
+        }
     }
 
     public void setIndicatorColor(int indicatorColor) {
