@@ -6,7 +6,7 @@
 
 Android AdvancedPagerSlidingTabStrip是一种Android平台的导航控件，完美兼容Android自带库和兼容库的`ViewPager`组件。
 
-todo:即将升级更新，将tab的indicateLine变为和textview长度一致的形态
+todo:即将升级更新，将tab的indicateLine变为和textview长度一致的形态，过于忙碌
 
 ![p1](http://ww4.sinaimg.cn/mw1024/6e4e0c91gw1euym6rifr7j20810g2dgl.jpg)![p2](http://ww2.sinaimg.cn/bmiddle/6e4e0c91gw1euym6s3jw3j20810g2dgm.jpg)![p3](http://ww1.sinaimg.cn/bmiddle/6e4e0c91gw1euymy0xtn7j20810g2dgl.jpg)
 
