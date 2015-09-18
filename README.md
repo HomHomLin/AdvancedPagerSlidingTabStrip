@@ -12,6 +12,8 @@ last version: v1.0.0
 
 new version: v1.0.1
 
+NEXT : 我将会更新demo，并增加几个功能，包括：将小圆点换成带有数字显示的形态，单独的tab背景效果，不再用绘制方式，可以循环拉动，到最后的时候会拉回到第一个。
+
 # v1.0.1内容:
 
 ①将tab的indicateLine变为和textview长度一致的形态，现在多了一种显示效果。
