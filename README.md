@@ -6,9 +6,19 @@
 
 Android AdvancedPagerSlidingTabStrip是一种Android平台的导航控件，完美兼容Android自带库和兼容库的`ViewPager`组件。
 
-todo:即将升级更新，将tab的indicateLine变为和textview长度一致的形态，过于忙碌
+#新更新！
 
-![p1](http://ww4.sinaimg.cn/mw1024/6e4e0c91gw1euym6rifr7j20810g2dgl.jpg)![p2](http://ww2.sinaimg.cn/bmiddle/6e4e0c91gw1euym6s3jw3j20810g2dgm.jpg)![p3](http://ww1.sinaimg.cn/bmiddle/6e4e0c91gw1euymy0xtn7j20810g2dgl.jpg)
+last version: v1.0.0
+
+new version: v1.0.1
+
+# v1.0.1内容:
+
+①将tab的indicateLine变为和textview长度一致的形态，现在多了一种显示效果。
+
+②现在iconTab也可以显示小圆点了!iconTab情况下有新消息也可以展示了。
+
+![p1](http://ww4.sinaimg.cn/mw1024/6e4e0c91gw1euym6rifr7j20810g2dgl.jpg)![p2](http://ww2.sinaimg.cn/bmiddle/6e4e0c91gw1euym6s3jw3j20810g2dgm.jpg)![p3](http://ww1.sinaimg.cn/bmiddle/6e4e0c91gw1euymy0xtn7j20810g2dgl.jpg)![p4](http://ww1.sinaimg.cn/bmiddle/6e4e0c91gw1ew6q3hxg7qj20k00zkdh8.jpg)![p5](http://ww4.sinaimg.cn/bmiddle/6e4e0c91gw1ew6q95gmllj20k00zk400.jpg)
 
 #用法
 
@@ -21,6 +31,21 @@ todo:即将升级更新，将tab的indicateLine变为和textview长度一致的�
         style="@style/pagertab_icon_style"
         android:layout_alignParentBottom="true"
         android:fillViewport="false"/>
+
+    <style name="pagertab_style">
+        <item name="android:background">@drawable/tab_bg_normal</item>
+        <item name="ptabBackground">@drawable/tab_bg_transparent</item>
+        <item name="android:textSize">13sp</item>
+        <item name="android:textAppearance">@style/CustomTabPageIndicator.Text</item>
+        <item name="android:textColor">@drawable/tab_color_select</item>
+        <item name="indicatorColor">@color/home_bar_text_push</item>
+        <item name="underlineColor">#1A000000</item>
+        <item name="dividerColor">#00000000</item>
+        <item name="shouldExpand">false</item>
+        <item name="tabPaddingLeftRight">8dp</item>
+        <item name="apsts_draw_mode">text</item>
+        <item name="tabTextSelectColor">@color/home_bar_text_push</item>
+    </style>
 
 在代码中find该组件，并且设置adapter和ViewPager。
 
@@ -53,7 +78,9 @@ AdvancedPagerSlidingTabStrip支持绑定OnPageChangeListener，并且不影响�
      只需要调用AdvancedPagerSlidingTabStrip的showDot(int index)或者hideDot(int index)即可实现红点的显示和隐藏两个方法，index代表需要显示和隐藏的tab序列位置（0 ~ N）。
      该方法对任意一种tab（IconTab和TextTab都有效）。
 
-三、BUG修复和参数增加
+三、跟随TextView的动态显示效果模式，原组件没有该功能。现在你可以通过AdvancedPagerSlidingTabStrip实现下划线跟随TextView的动态效果了。任意tab都有效果！
+
+四、BUG修复和参数增加
 
     默认情况下一些字体和颜色设置无效的问题也在AdvancedPagerSlidingTabStrip中得到了修复。
 
@@ -74,12 +101,13 @@ AdvancedPagerSlidingTabStrip支持绑定OnPageChangeListener，并且不影响�
  * `scrollOffset` Scroll offset of the selected tab
  * `tabBackground` Background drawable of each tab, should be a StateListDrawable
  * `shouldExpand` If set to true, each tab is given the same weight, default false
- * `textAllCaps` If true, all tab titles will be upper case, default true
- * `tabTextSelectColor` Color of the tab text which you select
+ * `textAllCaps` Tab的文字是否为全部大写，如果是true就全部大写，默认为true
+ * `tabTextSelectColor` 你所选择的那个tab的颜色
+ * `apsts_draw_mode` 绘制模式，text或者normal，用于是否将下划线绘制为跟随TextView
 
 # 更新日志
 
-### 当前版本: 1.0.0
+### 当前版本: 1.0.1
 
 # Developed By
 
