@@ -277,7 +277,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
     private void addIconTab(final int position, int resId, String text) {
 
         LinearLayout tab = new LinearLayout(getContext());
-        tab.setOrientation(LinearLayout.VERTICAL);
+        tab.setOrientation(LinearLayout.HORIZONTAL);
         tab.setGravity(Gravity.CENTER);
         tab.setOnClickListener(new OnClickListener() {
             @Override
@@ -298,7 +298,21 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
             txt.setCompoundDrawablesWithIntrinsicBounds(0, resId, 0, 0);
         }
 
+
+        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.psts_dot_wh), getResources().getDimensionPixelSize(R.dimen.psts_dot_wh));
+        ImageView dot = new ImageView(getContext());
+        dot.setImageResource(R.drawable.psts_new_tips_bg);
+        dot.setLayoutParams(layoutParams);
+
+        LinearLayout dot_layout = new LinearLayout(getContext());
+        dot_layout.setGravity(Gravity.TOP);
+        LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
+        dot_layout.setLayoutParams(layoutParams2);
+        dot_layout.addView(dot);
+
         tab.addView(txt);
+        tab.addView(dot_layout);
+        dot_layout.setVisibility(View.INVISIBLE);
         tabsContainer.addView(tab);
 
 //        ImageButton tab = new ImageButton(getContext());

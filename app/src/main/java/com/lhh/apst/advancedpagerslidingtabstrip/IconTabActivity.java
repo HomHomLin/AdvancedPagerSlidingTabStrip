@@ -57,6 +57,7 @@ public class IconTabActivity extends ActionBarActivity implements ViewPager.OnPa
         mAPSTS.setViewPager(mVP);
         mAPSTS.setOnPageChangeListener(this);
         mVP.setCurrentItem(VIEW_FIRST);
+        mAPSTS.showDot(VIEW_FIRST);
     }
 
     @Override
