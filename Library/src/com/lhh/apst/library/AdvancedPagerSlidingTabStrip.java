@@ -430,7 +430,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 
         final int height = getHeight();
 
-        // draw indicator line
+        // 设置提示下划线的颜色
 
         rectPaint.setColor(indicatorColor);
 
@@ -450,14 +450,15 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
             lineRight = (currentPositionOffset * nextTabRight + (1f - currentPositionOffset) * lineRight);
         }
 
+        //绘制提示下划线
         canvas.drawRect(lineLeft, height - indicatorHeight, lineRight, height, rectPaint);
 
-        // draw underline
+        // 绘制下划线
 
         rectPaint.setColor(underlineColor);
         canvas.drawRect(0, height - underlineHeight, tabsContainer.getWidth(), height, rectPaint);
 
-        // draw divider
+        // 绘制分割线
 
         dividerPaint.setColor(dividerColor);
         for (int i = 0; i < tabCount - 1; i++) {
