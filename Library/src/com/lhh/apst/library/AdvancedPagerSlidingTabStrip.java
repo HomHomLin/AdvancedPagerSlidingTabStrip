@@ -82,6 +82,10 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
     private int tabTextSelectColor = 0xFF666666;
     private Typeface tabTypeface = null;
     private int tabTypefaceStyle = Typeface.NORMAL;
+    private int tabDrawMode = DRAW_MODE_NORMAL;
+
+    public static final int DRAW_MODE_NORMAL = 0;
+    public static final int DRAW_MODE_TEXT = 1;
 
     private int lastScrollX = 0;
 
@@ -146,6 +150,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         scrollOffset = a.getDimensionPixelSize(R.styleable.PagerSlidingTabStrip_scrollOffset, scrollOffset);
         textAllCaps = a.getBoolean(R.styleable.PagerSlidingTabStrip_psts_textAllCaps, textAllCaps);
         tabTextSelectColor = a.getColor(R.styleable.PagerSlidingTabStrip_tabTextSelectColor, dividerColor);
+        tabDrawMode = a.getInteger(R.styleable.PagerSlidingTabStrip_apsts_draw_mode,DRAW_MODE_NORMAL);
 
         a.recycle();
 
@@ -428,6 +433,14 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
             return;
         }
 
+        if(tabDrawMode == DRAW_MODE_NORMAL) {
+            drawTabNormalMode(canvas);
+        }else {
+            drawTabTextMode(canvas);
+        }
+    }
+
+    private void drawTabNormalMode(Canvas canvas){
         final int height = getHeight();
 
         // 设置提示下划线的颜色
@@ -448,10 +461,63 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 
             lineLeft = (currentPositionOffset * nextTabLeft + (1f - currentPositionOffset) * lineLeft);
             lineRight = (currentPositionOffset * nextTabRight + (1f - currentPositionOffset) * lineRight);
+
         }
 
         //绘制提示下划线
-        canvas.drawRect(lineLeft, height - indicatorHeight, lineRight, height, rectPaint);
+        canvas.drawRect(lineLeft , height - indicatorHeight, lineRight , height, rectPaint);
+
+        // 绘制下划线
+
+        rectPaint.setColor(underlineColor);
+        canvas.drawRect(0, height - underlineHeight, tabsContainer.getWidth(), height, rectPaint);
+
+        // 绘制分割线
+
+        dividerPaint.setColor(dividerColor);
+        for (int i = 0; i < tabCount - 1; i++) {
+            View tab = tabsContainer.getChildAt(i);
+            canvas.drawLine(tab.getRight(), dividerPadding, tab.getRight(), height - dividerPadding, dividerPaint);
+        }
+    }
+
+    private void drawTabTextMode(Canvas canvas){
+
+        final int height = getHeight();
+
+        // 设置提示下划线的颜色
+
+        rectPaint.setColor(indicatorColor);
+
+        // default: line below current tab
+        View currentTab = tabsContainer.getChildAt(currentPosition);
+        float lineLeft = currentTab.getLeft();
+        float lineRight = currentTab.getRight();
+
+        View currentTextView = ((LinearLayout)currentTab).getChildAt(0);
+        float currentTextViewLeft = currentTextView.getLeft();
+        float currentTextViewRight = currentTextView.getRight();
+
+        // if there is an offset, start interpolating left and right coordinates between current and next tab
+        if (currentPositionOffset > 0f && currentPosition < tabCount - 1) {
+
+            View nextTab = tabsContainer.getChildAt(currentPosition + 1);
+            final float nextTabLeft = nextTab.getLeft();
+            final float nextTabRight = nextTab.getRight();
+
+            lineLeft = (currentPositionOffset * nextTabLeft + (1f - currentPositionOffset) * lineLeft);
+            lineRight = (currentPositionOffset * nextTabRight + (1f - currentPositionOffset) * lineRight);
+
+            View nextTextView = ((LinearLayout)nextTab).getChildAt(0);
+            float nextTextViewLeft = nextTextView.getLeft();
+            float nextTextViewRight = nextTextView.getRight();
+
+            currentTextViewLeft = (currentPositionOffset * nextTextViewLeft + (1f - currentPositionOffset) * currentTextViewLeft);
+            currentTextViewRight = (currentPositionOffset * nextTextViewRight + (1f - currentPositionOffset) * currentTextViewRight);
+        }
+
+        //绘制提示下划线
+        canvas.drawRect(lineLeft + currentTextViewLeft, height - indicatorHeight, lineLeft + currentTextViewRight , height, rectPaint);
 
         // 绘制下划线
 
