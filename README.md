@@ -51,6 +51,7 @@ AdvancedPagerSlidingTabStrip支持绑定OnPageChangeListener，并且不影响�
 
    1.带有提示点的tab
      只需要调用AdvancedPagerSlidingTabStrip的showDot(int index)或者hideDot(int index)即可实现红点的显示和隐藏两个方法，index代表需要显示和隐藏的tab序列位置（0 ~ N）。
+     该方法对任意一种tab（IconTab和TextTab都有效）。
 
 三、BUG修复和参数增加
 
