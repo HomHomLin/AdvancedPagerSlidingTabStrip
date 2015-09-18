@@ -519,17 +519,31 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         //绘制提示下划线
         canvas.drawRect(lineLeft + currentTextViewLeft, height - indicatorHeight, lineLeft + currentTextViewRight , height, rectPaint);
 
-        // 绘制下划线
 
-        rectPaint.setColor(underlineColor);
-        canvas.drawRect(0, height - underlineHeight, tabsContainer.getWidth(), height, rectPaint);
+//        rectPaint.setColor(underlineColor);
+//        canvas.drawRect(0, height - underlineHeight, tabsContainer.getWidth(), height, rectPaint);
 
-        // 绘制分割线
+//        for(int i = 0 ; i < tabCount - 1 ; i ++){
+//            View tab = tabsContainer.getChildAt(i);
+//            View tabTextView = ((LinearLayout)tab).getChildAt(0);
+//            canvas.drawRect(tab.getLeft() + tabTextView.getLeft(), height - underlineHeight, tab.getLeft() + tabTextView.getRight(), height, rectPaint);
+//        }
+
+        // 分割线paint
 
         dividerPaint.setColor(dividerColor);
-        for (int i = 0; i < tabCount - 1; i++) {
+
+        // 下划线paint
+        rectPaint.setColor(underlineColor);
+
+        for (int i = 0; i < tabCount; i++) {
             View tab = tabsContainer.getChildAt(i);
-            canvas.drawLine(tab.getRight(), dividerPadding, tab.getRight(), height - dividerPadding, dividerPaint);
+            //绘制分割线
+            if(i < tabCount - 1) {
+                canvas.drawLine(tab.getRight(), dividerPadding, tab.getRight(), height - dividerPadding, dividerPaint);
+            }
+            View tabTextView = ((LinearLayout)tab).getChildAt(0);
+            canvas.drawRect(tab.getLeft() + tabTextView.getLeft(), height - underlineHeight, tab.getLeft() + tabTextView.getRight(), height, rectPaint);
         }
     }
 
