@@ -1,9 +1,5 @@
 # Android AdvancedPagerSlidingTabStrip
 
-该组件改造自Andreas Stuetz的PagerSlidingTabStrip[Github](https://github.com/astuetz/PagerSlidingTabStrip/)
-
-原组件已经很久没有更新，有些地方有些许缺漏，这里进行重新升级和改造。
-
 Android AdvancedPagerSlidingTabStrip是一种Android平台的导航控件，完美兼容Android自带库和兼容库的`ViewPager`组件。
 
 #新更新！
@@ -15,7 +11,7 @@ new version: v1.0.2b
 NEXT :
 
 我将会更新demo，并增加几个功能，包括：将小圆点换成带有数字显示的形态；单独的tab背景效果，不再用绘制方式（已经完成）；可以循环拉动，到最后的时候会拉回到第一个。
-以及文档的更新，一些细节优化和bug修复。
+以及文档的更新，一些细节优化和bug修复，以及将库打包，可以直接gradle。
 
 # v1.0.1内容:
 
@@ -72,7 +68,7 @@ AdvancedPagerSlidingTabStrip支持绑定OnPageChangeListener，并且不影响�
 
 # 特点
 
-一、现在你可以使用带有文字和图片的Tab了，并且带有多种切换的效果，原组件的IconAdapter只能使用图片而不能同时使用文字和图片并且图片没有切换效果。
+一、现在你可以使用带有文字和图片的Tab了，并且带有多种切换的效果。
 
   1.带有文字的图片
   只需要将你的Adapter实现AdvancedPagerSlidingTabStrip.IconTabProvider即可。其中提供getPageIconText(int index)方法用于返回index位置的图片文字。
@@ -81,23 +77,23 @@ AdvancedPagerSlidingTabStrip支持绑定OnPageChangeListener，并且不影响�
   AdvancedPagerSlidingTabStrip.IconTabProvider中提供了getPageIconSelectResId(int index)和getPageIconResId(int index)两个方法，前者用于实现选中时候的图片效果，后者用于实现默认情况下的图片效果。
 
 
-二、带有提示小点的tab，原组件没有该功能。现在你可以通过AdvancedPagerSlidingTabStrip实现像iOS一样的红点提示功能了。
+二、带有提示小点的tab。现在你可以通过AdvancedPagerSlidingTabStrip实现像iOS一样的红点提示功能了。
 
    1.带有提示点的tab
      只需要调用AdvancedPagerSlidingTabStrip的showDot(int index)或者hideDot(int index)即可实现红点的显示和隐藏两个方法，index代表需要显示和隐藏的tab序列位置（0 ~ N）。
      该方法对任意一种tab（IconTab和TextTab都有效）。
 
-三、跟随TextView的动态显示效果模式，原组件没有该功能。现在你可以通过AdvancedPagerSlidingTabStrip实现下划线跟随TextView的动态效果了。任意tab都有效果！
+三、跟随TextView的动态显示效果模式。现在你可以通过AdvancedPagerSlidingTabStrip实现下划线跟随TextView的动态效果了。任意tab都有效果！
 
-四、BUG修复和参数增加
+四、自定义View形式的Tab。你可以通过实现为每个View自定义的形式来创建属于你自己的Tab。
+
+    通过将Adapter实现CustomTabProvider接口，实现其中的getDisSelectTabView(int position, View convertView)和getSelectTabView(int position, View convertView) 回调即可，前者为非选中状态下的TabView视图，后者为选中状态下的TabView视图，具体查看demo。
+
+五、BUG修复和参数增加
 
     默认情况下一些字体和颜色设置无效的问题也在AdvancedPagerSlidingTabStrip中得到了修复。
 
-    增加了一个新参数pstsTabPaddingTopBottom用于设置上下padding。
-
 # 参数
-
-跟原组件的参数一致:
 
  * `indicatorColor` Color of the sliding indicator
  * `underlineColor` Color of the full-width line on the bottom of the view
@@ -120,6 +116,9 @@ AdvancedPagerSlidingTabStrip支持绑定OnPageChangeListener，并且不影响�
 
 # Developed By
 
- * Andreas Stuetz - <andreas.stuetz@gmail.com> (原作者，向其致敬！)
-
  * Linhonghong - <linhh90@163.com> (本小弟，^_^)
+
+#PS
+
+  该组件基于Andreas Stuetz的PagerSlidingTabStrip[Github](https://github.com/astuetz/PagerSlidingTabStrip/)
+
