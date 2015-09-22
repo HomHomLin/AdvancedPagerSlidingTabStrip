@@ -3,4 +3,7 @@
     <color name="home_bar_text_normal">#6a6c6f</color>
     <color name="home_bar_text_push">#ff5959</color>
     <color name="textnormal">#adadad</color>
+
+    <color name="btn_bg_pressed_color">#ffacac</color>
+    <color name="btn_bg_color">#ff5959</color>
 </resources>

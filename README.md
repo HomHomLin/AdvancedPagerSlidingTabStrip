@@ -20,7 +20,11 @@ NEXT : 我将会更新demo，并增加几个功能，包括：将小圆点换成
 
 ②现在iconTab也可以显示小圆点了!iconTab情况下有新消息也可以展示了。
 
-![p1](http://ww4.sinaimg.cn/mw1024/6e4e0c91gw1euym6rifr7j20810g2dgl.jpg)![p2](http://ww2.sinaimg.cn/bmiddle/6e4e0c91gw1euym6s3jw3j20810g2dgm.jpg)![p3](http://ww1.sinaimg.cn/bmiddle/6e4e0c91gw1euymy0xtn7j20810g2dgl.jpg)![p4](http://ww1.sinaimg.cn/bmiddle/6e4e0c91gw1ew6q3hxg7qj20k00zkdh8.jpg)![p5](http://ww4.sinaimg.cn/bmiddle/6e4e0c91gw1ew6q95gmllj20k00zk400.jpg)
+# v1.0.2b内容（2015年9月22日）：
+
+①增加可以自定义view的tab：customtab，文档后续会介绍，还缺少一些优化，会持续关注
+
+![p1](http://ww4.sinaimg.cn/mw1024/6e4e0c91gw1euym6rifr7j20810g2dgl.jpg)![p2](http://ww2.sinaimg.cn/bmiddle/6e4e0c91gw1euym6s3jw3j20810g2dgm.jpg)![p3](http://ww1.sinaimg.cn/bmiddle/6e4e0c91gw1euymy0xtn7j20810g2dgl.jpg)![p4](http://ww1.sinaimg.cn/bmiddle/6e4e0c91gw1ew6q3hxg7qj20k00zkdh8.jpg)![p5](http://ww4.sinaimg.cn/bmiddle/6e4e0c91gw1ew6q95gmllj20k00zk400.jpg)![p6](http://ww3.sinaimg.cn/bmiddle/6e4e0c91gw1ewb9a9y0kyj20k00zkmym.jpg)
 
 #用法
 

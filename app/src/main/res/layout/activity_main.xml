@@ -16,4 +16,10 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="start icon tab activity"/>
+
+    <Button
+        android:id="@+id/customtab"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="start custom tab activity"/>
 </LinearLayout>
