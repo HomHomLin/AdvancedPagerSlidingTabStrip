@@ -10,9 +10,12 @@ Android AdvancedPagerSlidingTabStrip是一种Android平台的导航控件，完�
 
 last version: v1.0.0
 
-new version: v1.0.1
+new version: v1.0.2b
 
-NEXT : 我将会更新demo，并增加几个功能，包括：将小圆点换成带有数字显示的形态，单独的tab背景效果，不再用绘制方式，可以循环拉动，到最后的时候会拉回到第一个。
+NEXT :
+
+我将会更新demo，并增加几个功能，包括：将小圆点换成带有数字显示的形态；单独的tab背景效果，不再用绘制方式（已经完成）；可以循环拉动，到最后的时候会拉回到第一个。
+以及文档的更新，一些细节优化和bug修复。
 
 # v1.0.1内容:
 
