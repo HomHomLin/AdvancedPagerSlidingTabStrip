@@ -12,6 +12,7 @@ import android.os.Parcelable;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
+import android.util.SparseArray;
 import android.util.TypedValue;
 import android.view.View;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
@@ -140,10 +141,10 @@ public class CustomPagerSlidingTabStrip extends HorizontalScrollView {
         }
 
         if(mDisSelectTabViewCache == null){
-            mDisSelectTabViewCache = new HashMap();
+            mDisSelectTabViewCache = new SparseArray<>();
         }
         if(mSelectTabViewCache == null){
-            mSelectTabViewCache = new HashMap<>();
+            mSelectTabViewCache = new SparseArray<>();
         }
     }
 
@@ -174,12 +175,13 @@ public class CustomPagerSlidingTabStrip extends HorizontalScrollView {
             if (pager.getAdapter() instanceof CustomTabProvider) {
                 View view = ((CustomTabProvider) pager.getAdapter()).getSelectTabView(i, getSelectTabView(i));
                 setSelectTabView(i, view);
+                updateViewStyle(view);
                 addTab(i, view);
             }
 
         }
 
-        updateTabStyles();
+//        updateTabStyles();
 
         checkedTabWidths = false;
 
@@ -337,6 +339,7 @@ public class CustomPagerSlidingTabStrip extends HorizontalScrollView {
         // 绘制分割线
 
         dividerPaint.setColor(dividerColor);
+
         for (int i = 0; i < tabCount - 1; i++) {
             View tab = tabsContainer.getChildAt(i);
             canvas.drawLine(tab.getRight(), dividerPadding, tab.getRight(), height - dividerPadding, dividerPaint);
@@ -383,7 +386,7 @@ public class CustomPagerSlidingTabStrip extends HorizontalScrollView {
 
     }
 
-    private HashMap<Integer, View> mDisSelectTabViewCache;//缓存
+    private SparseArray<View> mDisSelectTabViewCache;//缓存
 
     private View getDisSelectTabView(int position){
         return mDisSelectTabViewCache.get(position);
@@ -393,7 +396,7 @@ public class CustomPagerSlidingTabStrip extends HorizontalScrollView {
         mDisSelectTabViewCache.put(position,view);
     }
 
-    private HashMap<Integer, View> mSelectTabViewCache;//缓存
+    private SparseArray<View> mSelectTabViewCache;//缓存
 
     private View getSelectTabView(int position){
         return mSelectTabViewCache.get(position);
