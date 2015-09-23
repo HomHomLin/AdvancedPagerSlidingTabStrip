@@ -207,14 +207,14 @@ public class CustomPagerSlidingTabStrip extends HorizontalScrollView {
 
     }
 
+    private PageOnClickListener mPageOnClickListener;
+
     private void addTab(final int position, View view){
-        view.setOnClickListener(new OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                scrollToChild(position, 0);
-                pager.setCurrentItem(position);
-            }
-        });
+        if(mPageOnClickListener == null){
+            mPageOnClickListener = new PageOnClickListener();
+        }
+        view.setTag(R.id.tag_position, position);
+        view.setOnClickListener(mPageOnClickListener);
         tabsContainer.addView(view);
     }
 
@@ -406,6 +406,16 @@ public class CustomPagerSlidingTabStrip extends HorizontalScrollView {
         mSelectTabViewCache.put(position,view);
     }
 
+    class PageOnClickListener implements View.OnClickListener{
+
+        @Override
+        public void onClick(View view) {
+            int tag = (int)view.getTag(R.id.tag_position);
+            scrollToChild(tag, 0);
+            pager.setCurrentItem(tag);
+        }
+    }
+
     public void setSelectItem(int position){
         if (!(pager.getAdapter() instanceof CustomTabProvider)) {
             return;
@@ -425,7 +435,16 @@ public class CustomPagerSlidingTabStrip extends HorizontalScrollView {
                 setDisSelectTabView(i, view);
             }
 
+            view.setTag(R.id.tag_position, i);
+
+            if(mPageOnClickListener == null){
+                mPageOnClickListener = new PageOnClickListener();
+            }
+
+            view.setOnClickListener(mPageOnClickListener);
+
             tabsContainer.addView(view, i);
+
             updateViewStyle(view);
         }
     }
