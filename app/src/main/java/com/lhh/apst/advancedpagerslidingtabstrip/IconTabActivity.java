@@ -136,7 +136,7 @@ public class IconTabActivity extends ActionBarActivity implements ViewPager.OnPa
         }
 
         @Override
-        public int getPageIconResId(int index) {
+        public Integer getPageIcon(int index) {
             if(index >= 0 && index < VIEW_SIZE){
                 switch (index){
                     case  VIEW_FIRST:
@@ -155,7 +155,7 @@ public class IconTabActivity extends ActionBarActivity implements ViewPager.OnPa
         }
 
         @Override
-        public int getPageIconSelectResId(int index) {
+        public Integer getPageSelectIcon(int index) {
             if(index >= 0 && index < VIEW_SIZE){
                 switch (index){
                     case  VIEW_FIRST:

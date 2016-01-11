@@ -1,28 +1,21 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <!--psts-->
-    <declare-styleable name="RowLayout">
-        <attr name="android:horizontalSpacing"/>
-    </declare-styleable>
-    <declare-styleable name="TaberLayout">
-        <attr name="tabBackground" format="reference"/>
-        <attr name="animTime" format="reference|integer"/>
-    </declare-styleable>
-    <declare-styleable name="PagerSlidingTabStrip">
-        <attr name="indicatorColor" format="color"/>
-        <attr name="underlineColor" format="color"/>
-        <attr name="dividerColor" format="color"/>
+    <!--apsts-->
+    <declare-styleable name="AdvancedPagerSlidingTabStrip">
+        <attr name="tabIndicatorColor" format="color"/>
+        <attr name="tabUnderlineColor" format="color"/>
+        <attr name="tabDividerColor" format="color"/>
         <attr name="tabTextSelectColor" format="color"/>
-        <attr name="indicatorHeight" format="dimension"/>
-        <attr name="underlineHeight" format="dimension"/>
-        <attr name="psts_dividerPadding" format="dimension"/>
+        <attr name="tabIndicatorHeight" format="dimension"/>
+        <attr name="tabUnderlineHeight" format="dimension"/>
+        <attr name="tabDividerPadding" format="dimension"/>
         <attr name="tabPaddingLeftRight" format="dimension"/>
         <attr name="tabPaddingTopBottom" format="dimension"/>
-        <attr name="scrollOffset" format="dimension"/>
-        <attr name="ptabBackground" format="reference"/>
-        <attr name="shouldExpand" format="boolean"/>
-        <attr name="psts_textAllCaps" format="boolean"/>
-        <attr name="apsts_draw_mode" format="enum">
+        <attr name="tabScrollOffset" format="dimension"/>
+        <attr name="tabBackground" format="reference"/>
+        <attr name="tabShouldExpand" format="boolean"/>
+        <attr name="tabTextAllCaps" format="boolean"/>
+        <attr name="tabDrawMode" format="enum">
             <enum name="normal" value="0"/>
             <enum name="text" value="1"/>
         </attr>
