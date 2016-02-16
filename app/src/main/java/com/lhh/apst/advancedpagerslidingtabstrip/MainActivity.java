@@ -15,6 +15,7 @@ public class MainActivity extends ActionBarActivity {
     private Button mNormalTab;
     private Button mIconTab;
     private Button mCustomTab;
+    private Button mViewTab;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -28,6 +29,7 @@ public class MainActivity extends ActionBarActivity {
         mIconTab = (Button)findViewById(R.id.icontab);
         mNormalTab = (Button)findViewById(R.id.noramltab);
         mCustomTab = (Button)findViewById(R.id.customtab);
+        mViewTab = (Button)findViewById(R.id.viewtab);
     }
 
     private void setButton(){
@@ -47,6 +49,13 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void onClick(View view) {
                 MainActivity.this.startActivity(new Intent(MainActivity.this,CustomTabActivity.class));
+            }
+        });
+        mViewTab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                MainActivity.this.startActivity(new Intent(MainActivity.this,ViewTabActivity.class));
+
             }
         });
     }

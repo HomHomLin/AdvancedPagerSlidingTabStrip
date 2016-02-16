@@ -24,4 +24,7 @@ dependencies {
     compile 'com.android.support:appcompat-v7:23.1.0'
 
     compile project(':Library')
+
+    compile 'com.facebook.fresco:fresco:0.9.0'
+    compile 'com.facebook.fresco:imagepipeline-okhttp:0.9.0'
 }
