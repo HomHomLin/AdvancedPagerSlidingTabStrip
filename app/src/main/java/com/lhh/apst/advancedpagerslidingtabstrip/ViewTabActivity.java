@@ -129,16 +129,16 @@ public class ViewTabActivity  extends ActionBarActivity implements ViewPager.OnP
             draweeView = (FrescoThumbnailView)view;
             switch (position){
                 case  VIEW_FIRST:
-                    draweeView.loadView("",R.mipmap.home_categry_icon_f_n);
+                    draweeView.loadView("https://raw.githubusercontent.com/HomHomLin/AdvancedPagerSlidingTabStrip/master/Pic/categry_icon_p.png",R.mipmap.home_categry_icon_f_n);
                     break;
                 case  VIEW_SECOND:
-                    draweeView.loadView("",R.mipmap.home_auther_icon_f_p);
+                    draweeView.loadView("https://raw.githubusercontent.com/HomHomLin/AdvancedPagerSlidingTabStrip/master/Pic/classify_icon_p.png",R.mipmap.home_auther_icon_f_p);
                     break;
                 case  VIEW_THIRD:
-                    draweeView.loadView("",R.mipmap.home_live_icon_f_n);
+                    draweeView.loadView("https://raw.githubusercontent.com/HomHomLin/AdvancedPagerSlidingTabStrip/master/Pic/mine_icon_p.png",R.mipmap.home_live_icon_f_n);
                     break;
                 case  VIEW_FOURTH:
-                    draweeView.loadView("",R.mipmap.home_main_icon_f_n);
+                    draweeView.loadView("https://raw.githubusercontent.com/HomHomLin/AdvancedPagerSlidingTabStrip/master/Pic/update_dynamic_p.png",R.mipmap.home_main_icon_f_n);
                     break;
                 default:
                     break;
@@ -157,16 +157,16 @@ public class ViewTabActivity  extends ActionBarActivity implements ViewPager.OnP
             draweeView = (FrescoThumbnailView)view;
             switch (position){
                 case  VIEW_FIRST:
-                    draweeView.loadView("",R.mipmap.home_categry_icon_n);
+                    draweeView.loadView("https://raw.githubusercontent.com/HomHomLin/AdvancedPagerSlidingTabStrip/master/Pic/categry_icon_n.png",R.mipmap.home_categry_icon_n);
                     break;
                 case  VIEW_SECOND:
-                    draweeView.loadView("",R.mipmap.home_auther_icon_f_n);
+                    draweeView.loadView("https://raw.githubusercontent.com/HomHomLin/AdvancedPagerSlidingTabStrip/master/Pic/classify_icon_n.png",R.mipmap.home_auther_icon_f_n);
                     break;
                 case  VIEW_THIRD:
-                    draweeView.loadView("",R.mipmap.home_live_icon_n);
+                    draweeView.loadView("https://raw.githubusercontent.com/HomHomLin/AdvancedPagerSlidingTabStrip/master/Pic/mine_icon_n.png",R.mipmap.home_live_icon_n);
                     break;
                 case  VIEW_FOURTH:
-                    draweeView.loadView("",R.mipmap.home_main_icon_n);
+                    draweeView.loadView("https://raw.githubusercontent.com/HomHomLin/AdvancedPagerSlidingTabStrip/master/Pic/update_dynamic_n.png",R.mipmap.home_main_icon_n);
                     break;
                 default:
                     break;
