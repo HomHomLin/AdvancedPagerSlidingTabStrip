@@ -275,7 +275,12 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         dot.setGravity(Gravity.CENTER);
         dot.setSingleLine();
         dot.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.psts_dot_txt_size));
-        dot.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.apsts_tips, null));
+        //16 new
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            dot.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.apsts_tips, null));
+        }else{
+            dot.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.apsts_tips, null));
+        }
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
         layoutParams.setMargins(0, getResources().getDimensionPixelSize(R.dimen.psts_dot_m_top), getResources().getDimensionPixelSize(R.dimen.psts_dot_m_right), 0);
         dot.setLayoutParams(layoutParams);
@@ -363,7 +368,11 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         dot.setGravity(Gravity.CENTER);
         dot.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.psts_dot_txt_size));
         dot.setSingleLine();
-        dot.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.apsts_tips, null));
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            dot.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.apsts_tips, null));
+        }else {
+            dot.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.apsts_tips, null));
+        }
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
         layoutParams.setMargins(0, 0, getResources().getDimensionPixelSize(R.dimen.psts_dot_m_right), 0);
 
