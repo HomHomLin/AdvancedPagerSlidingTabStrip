@@ -5,4 +5,5 @@
     <dimen name="psts_dot_m_right">9dp</dimen>
     <dimen name="psts_dot_m_top">7dp</dimen>
     <dimen name="psts_dot_linelayout_h">23dp</dimen>
+    <dimen name="psts_dot_txt_size">10sp</dimen>
 </resources>

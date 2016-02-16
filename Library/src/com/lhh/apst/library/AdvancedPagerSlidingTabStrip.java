@@ -21,10 +21,8 @@ import android.util.DisplayMetrics;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.HorizontalScrollView;
-import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -48,8 +46,6 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
             android.R.attr.textColor
     };
     // @formatter:on
-
-    private LinearLayout.LayoutParams defaultTabLayoutParams;
     private LinearLayout.LayoutParams expandedTabLayoutParams;
 
     private final PageListener pageListener = new PageListener();
@@ -168,7 +164,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         dividerPaint.setAntiAlias(true);
         dividerPaint.setStrokeWidth(dividerWidth);
 
-        defaultTabLayoutParams = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
+//        defaultTabLayoutParams = new LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT);
         expandedTabLayoutParams = new LinearLayout.LayoutParams(0, LayoutParams.MATCH_PARENT, 1.0f);
 
         if (locale == null) {
@@ -263,7 +259,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         dot.setBackgroundColor(Color.BLUE);
         dot.setGravity(Gravity.CENTER);
         dot.setSingleLine();
-        dot.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+        dot.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.psts_dot_txt_size));
         dot.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.apsts_tips, null));
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
         layoutParams.setMargins(0, getResources().getDimensionPixelSize(R.dimen.psts_dot_m_top), getResources().getDimensionPixelSize(R.dimen.psts_dot_m_right), 0);
@@ -332,7 +328,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         dot.setTextColor(Color.WHITE);
         dot.setBackgroundColor(Color.BLUE);
         dot.setGravity(Gravity.CENTER);
-        dot.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+        dot.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.psts_dot_txt_size));
         dot.setSingleLine();
         dot.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.apsts_tips, null));
         layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
