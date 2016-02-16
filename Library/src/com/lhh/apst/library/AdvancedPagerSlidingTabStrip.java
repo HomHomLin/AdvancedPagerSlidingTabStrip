@@ -274,7 +274,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 
     public void showDot(int index) {
         RelativeLayout tab = (RelativeLayout) tabsContainer.getChildAt(index);
-        TextView dot_layout = (TextView) tab.getChildAt(1);
+        TextView dot_layout = (TextView) tab.getChildAt(tab.getChildCount() - 1);
         dot_layout.setText("");
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)dot_layout.getLayoutParams();
         layoutParams.width = getResources().getDimensionPixelSize(R.dimen.psts_dot_wh);
@@ -285,7 +285,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 
     public void showDot(int index,String dotTxt) {
         RelativeLayout tab = (RelativeLayout) tabsContainer.getChildAt(index);
-        TextView dot_layout = (TextView) tab.getChildAt(1);
+        TextView dot_layout = (TextView) tab.getChildAt(tab.getChildCount() - 1);
         RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)dot_layout.getLayoutParams();
         layoutParams.width = RelativeLayout.LayoutParams.WRAP_CONTENT;
         layoutParams.height = RelativeLayout.LayoutParams.WRAP_CONTENT;
@@ -295,7 +295,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 
     public void hideDot(int index) {
         RelativeLayout tab = (RelativeLayout) tabsContainer.getChildAt(index);
-        TextView dot_layout = (TextView) tab.getChildAt(1);
+        TextView dot_layout = (TextView) tab.getChildAt(tab.getChildCount() - 1);
         dot_layout.setVisibility(View.GONE);
     }
 
