@@ -124,13 +124,13 @@ public class NormalTabActivity extends ActionBarActivity implements ViewPager.On
             if(position >= 0 && position < VIEW_SIZE){
                 switch (position){
                     case  VIEW_FIRST:
-                        return  "first";
+                        return  "FIRST";
                     case  VIEW_SECOND:
-                        return  "second";
+                        return  "SECOND";
                     case  VIEW_THIRD:
-                        return  "third";
+                        return  "THIRD";
                     case  VIEW_FOURTH:
-                        return  "fourth";
+                        return  "FOURTH";
                     default:
                         break;
                 }

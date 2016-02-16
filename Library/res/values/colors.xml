@@ -2,4 +2,5 @@
 <resources>
     <!--apsts-->
     <color name="background_tab_pressed">#6633B5E5</color>
+    <color name="red">#E43F3E</color>
 </resources>

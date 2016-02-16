@@ -2,5 +2,7 @@
 <resources>
     <!--psts-->
     <dimen name="psts_dot_wh">8dp</dimen>
+    <dimen name="psts_dot_m_right">9dp</dimen>
+    <dimen name="psts_dot_m_top">7dp</dimen>
     <dimen name="psts_dot_linelayout_h">23dp</dimen>
 </resources>

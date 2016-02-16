@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.Bitmap;
 import android.graphics.Canvas;
+import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
 import android.graphics.Typeface;
@@ -13,6 +14,7 @@ import android.graphics.drawable.Drawable;
 import android.os.Build;
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.v4.content.res.ResourcesCompat;
 import android.support.v4.view.ViewPager;
 import android.util.AttributeSet;
 import android.util.DisplayMetrics;
@@ -24,6 +26,7 @@ import android.view.ViewTreeObserver.OnGlobalLayoutListener;
 import android.widget.HorizontalScrollView;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 
 import java.util.Locale;
@@ -235,9 +238,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 
     private void addTextTab(final int position, String title) {
 
-        LinearLayout tab = new LinearLayout(getContext());
-        tab.setOrientation(LinearLayout.HORIZONTAL);
-        tab.setGravity(Gravity.CENTER);
+        RelativeLayout tab = new RelativeLayout(getContext());
         tab.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -251,42 +252,60 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         txt.setFocusable(true);
         txt.setGravity(Gravity.CENTER);
         txt.setSingleLine();
+        txt.setId(R.id.id_tab_txt);
+        RelativeLayout.LayoutParams txtParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
+        txtParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        txt.setLayoutParams(txtParams);
 
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.psts_dot_wh), getResources().getDimensionPixelSize(R.dimen.psts_dot_wh));
-        ImageView dot = new ImageView(getContext());
-        dot.setImageResource(R.drawable.psts_new_tips_bg);
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.psts_dot_wh), getResources().getDimensionPixelSize(R.dimen.psts_dot_wh));
+        TextView dot = new TextView(getContext());
+        dot.setTextColor(Color.WHITE);
+        dot.setBackgroundColor(Color.BLUE);
+        dot.setGravity(Gravity.CENTER);
+        dot.setSingleLine();
+        dot.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+        dot.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.apsts_tips, null));
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        layoutParams.setMargins(0, getResources().getDimensionPixelSize(R.dimen.psts_dot_m_top), getResources().getDimensionPixelSize(R.dimen.psts_dot_m_right), 0);
         dot.setLayoutParams(layoutParams);
 
-        LinearLayout dot_layout = new LinearLayout(getContext());
-        dot_layout.setGravity(Gravity.TOP);
-        LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, getResources().getDimensionPixelSize(R.dimen.psts_dot_linelayout_h));
-        dot_layout.setLayoutParams(layoutParams2);
-        dot_layout.addView(dot);
-
         tab.addView(txt);
-        tab.addView(dot_layout);
-        dot_layout.setVisibility(View.INVISIBLE);
+        tab.addView(dot);
+        dot.setVisibility(View.GONE);
         tabsContainer.addView(tab);
 
     }
 
     public void showDot(int index) {
-        LinearLayout tab = (LinearLayout) tabsContainer.getChildAt(index);
-        LinearLayout dot_layout = (LinearLayout) tab.getChildAt(1);
+        RelativeLayout tab = (RelativeLayout) tabsContainer.getChildAt(index);
+        TextView dot_layout = (TextView) tab.getChildAt(1);
+        dot_layout.setText("");
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)dot_layout.getLayoutParams();
+        layoutParams.width = getResources().getDimensionPixelSize(R.dimen.psts_dot_wh);
+        layoutParams.height = getResources().getDimensionPixelSize(R.dimen.psts_dot_wh);
+
+        dot_layout.setVisibility(View.VISIBLE);
+    }
+
+    public void showDot(int index,String dotTxt) {
+        RelativeLayout tab = (RelativeLayout) tabsContainer.getChildAt(index);
+        TextView dot_layout = (TextView) tab.getChildAt(1);
+        RelativeLayout.LayoutParams layoutParams = (RelativeLayout.LayoutParams)dot_layout.getLayoutParams();
+        layoutParams.width = RelativeLayout.LayoutParams.WRAP_CONTENT;
+        layoutParams.height = RelativeLayout.LayoutParams.WRAP_CONTENT;
+        dot_layout.setText(dotTxt);
         dot_layout.setVisibility(View.VISIBLE);
     }
 
     public void hideDot(int index) {
-        LinearLayout tab = (LinearLayout) tabsContainer.getChildAt(index);
-        LinearLayout dot_layout = (LinearLayout) tab.getChildAt(1);
-        dot_layout.setVisibility(View.INVISIBLE);
+        RelativeLayout tab = (RelativeLayout) tabsContainer.getChildAt(index);
+        TextView dot_layout = (TextView) tab.getChildAt(1);
+        dot_layout.setVisibility(View.GONE);
     }
 
     private void addIconTab(final int position, Object res, String text) {
 
-        LinearLayout tab = new LinearLayout(getContext());
-        tab.setOrientation(LinearLayout.HORIZONTAL);
-        tab.setGravity(Gravity.CENTER);
+        RelativeLayout tab = new RelativeLayout(getContext());
         tab.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -295,56 +314,37 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
             }
         });
 
+        //文本和图
         TextView txt = new TextView(getContext());
         txt.setText(text);
         txt.setFocusable(true);
         txt.setGravity(Gravity.CENTER);
         txt.setSingleLine();
+        txt.setId(R.id.id_tab_txt);
+        RelativeLayout.LayoutParams txtParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
+        txtParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        txt.setLayoutParams(txtParams);
 
-        setViewResource(res ,txt);
-//
-//        if(res instanceof Integer) {
-//            int resId = (int) res;
-//            if (resId != 0) {
-//                txt.setCompoundDrawablesWithIntrinsicBounds(0, resId, 0, 0);
-//            }
-//        }else if(res instanceof Bitmap){
-//            Bitmap bitmap = (Bitmap) res;
-//            if (bitmap != null) {
-//                txt.setCompoundDrawablesWithIntrinsicBounds(null, new BitmapDrawable(getResources(),bitmap), null, null);
-//            }
-//        }
+        setViewResource(res, txt);
 
+        RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.psts_dot_wh), getResources().getDimensionPixelSize(R.dimen.psts_dot_wh));
+        TextView dot = new TextView(getContext());
+        dot.setTextColor(Color.WHITE);
+        dot.setBackgroundColor(Color.BLUE);
+        dot.setGravity(Gravity.CENTER);
+        dot.setTextSize(TypedValue.COMPLEX_UNIT_SP, 10);
+        dot.setSingleLine();
+        dot.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.apsts_tips, null));
+        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        layoutParams.setMargins(0, 0, getResources().getDimensionPixelSize(R.dimen.psts_dot_m_right), 0);
 
-        LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.psts_dot_wh), getResources().getDimensionPixelSize(R.dimen.psts_dot_wh));
-        ImageView dot = new ImageView(getContext());
-        dot.setImageResource(R.drawable.psts_new_tips_bg);
         dot.setLayoutParams(layoutParams);
 
-        LinearLayout dot_layout = new LinearLayout(getContext());
-        dot_layout.setGravity(Gravity.TOP);
-        LinearLayout.LayoutParams layoutParams2 = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT);
-        dot_layout.setLayoutParams(layoutParams2);
-        dot_layout.addView(dot);
-
         tab.addView(txt);
-        tab.addView(dot_layout);
-        dot_layout.setVisibility(View.INVISIBLE);
+        tab.addView(dot);
+        dot.setVisibility(View.GONE);
         tabsContainer.addView(tab);
 
-//        ImageButton tab = new ImageButton(getContext());
-//        tab.setFocusable(true);
-//        tab.setImageResource(resId);
-//
-//        tab.setOnClickListener(new OnClickListener() {
-//            @Override
-//            public void onClick(View v) {
-//                //点击设置到这个地方
-//                pager.setCurrentItem(position);
-//            }
-//        });
-//
-//        tabsContainer.addView(tab);
     }
 
     public View getTabAt(int pos) {
@@ -504,9 +504,9 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         // default: line below current tab
         View currentTab = tabsContainer.getChildAt(currentPosition);
         float lineLeft = currentTab.getLeft();
-        float lineRight = currentTab.getRight();
+//        float lineRight = currentTab.getRight();
 
-        View currentTextView = ((LinearLayout)currentTab).getChildAt(0);
+        View currentTextView = ((RelativeLayout)currentTab).getChildAt(0);
         float currentTextViewLeft = currentTextView.getLeft();
         float currentTextViewRight = currentTextView.getRight();
 
@@ -515,12 +515,12 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 
             View nextTab = tabsContainer.getChildAt(currentPosition + 1);
             final float nextTabLeft = nextTab.getLeft();
-            final float nextTabRight = nextTab.getRight();
+//            final float nextTabRight = nextTab.getRight();
 
             lineLeft = (currentPositionOffset * nextTabLeft + (1f - currentPositionOffset) * lineLeft);
-            lineRight = (currentPositionOffset * nextTabRight + (1f - currentPositionOffset) * lineRight);
+//            lineRight = (currentPositionOffset * nextTabRight + (1f - currentPositionOffset) * lineRight);
 
-            View nextTextView = ((LinearLayout)nextTab).getChildAt(0);
+            View nextTextView = ((RelativeLayout)nextTab).getChildAt(0);
             float nextTextViewLeft = nextTextView.getLeft();
             float nextTextViewRight = nextTextView.getRight();
 
@@ -554,7 +554,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
             if(i < tabCount - 1) {
                 canvas.drawLine(tab.getRight(), dividerPadding, tab.getRight(), height - dividerPadding, dividerPaint);
             }
-            View tabTextView = ((LinearLayout)tab).getChildAt(0);
+            View tabTextView = ((RelativeLayout)tab).getChildAt(0);
             canvas.drawRect(tab.getLeft() + tabTextView.getLeft(), height - underlineHeight, tab.getLeft() + tabTextView.getRight(), height, rectPaint);
         }
     }
@@ -623,7 +623,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
     public void setSelectItem(int position){
         for (int i = 0; i < tabsContainer.getChildCount(); i++) {
             if (i == position) {
-                LinearLayout linearLayout = ((LinearLayout) tabsContainer.getChildAt(i));
+                RelativeLayout linearLayout = ((RelativeLayout) tabsContainer.getChildAt(i));
                 ((TextView) linearLayout.getChildAt(0)).setTextColor(tabTextSelectColor);
                 if (pager.getAdapter() instanceof IconTabProvider) {
                     Object obj = ((IconTabProvider) pager.getAdapter()).getPageSelectIcon(i);
@@ -632,7 +632,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
                 }
 //                    ((TextView) linearLayout.getChildAt(0)).setCompoundDrawablesWithIntrinsicBounds(0, R.drawable.home_categry_icon_f_n, 0, 0);
             } else {
-                LinearLayout linearLayout = ((LinearLayout) tabsContainer.getChildAt(i));
+                RelativeLayout linearLayout = ((RelativeLayout) tabsContainer.getChildAt(i));
                 ((TextView) linearLayout.getChildAt(0)).setTextColor(tabTextColor);
                 if (pager.getAdapter() instanceof IconTabProvider) {
                     Object obj = ((IconTabProvider) pager.getAdapter()).getPageIcon(i);
