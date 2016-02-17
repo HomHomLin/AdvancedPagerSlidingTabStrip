@@ -79,6 +79,7 @@ AdvancedPagerSlidingTabStrip支持绑定OnPageChangeListener，并且不影响�
     tabs.setOnPageChangeListener(mPageChangeListener);
 
 通过调用AdvancedPagerSlidingTabStrip的showDot(int index)和hideDot（int index）来显示或者隐藏Tab上的小圆点，index代表需要显示和隐藏的tab序列位置（0 ~ N）。
+
 通过调用showDot(int index,String txt)方法可以显示小圆点文字，并同样通过hideDot来隐藏。如：
 
     tabs.showDot(0, “99+”);
@@ -88,21 +89,30 @@ AdvancedPagerSlidingTabStrip支持绑定OnPageChangeListener，并且不影响�
 一、基本Adapter显示
 
   1.纯文本显示
+
   通过实现Adapter内的getPageTitle()接口即可显示纯文本情况的效果。
 
   2.图文显示
+
   通过将Adapter实现AdvancedPagerSlidingTabStrip.IconTabProvider接口，并实现其中的getPageIcon（展示未选中的图片）、getPageSelectIcon（展示选中的图片）和getPageIconText（展示的文本）方法即可显示图文效果。
+
   其中getPageIcon（展示未选中的图片）和getPageSelectIcon方法可以通过改变方法返回值来显示不同类型的图片，可以选择的返回值为Bitmap、Drawable和ResId。
 
   3.自定义图片View显示
+
   通过将Adapter实现AdvancedPagerSlidingTabStrip.ViewTabProvider接口，并实现其中的onSelectIconView（选中的自定义图片View）、onIconView（未选中的自定义图片View）和getPageIconText（文本）方法即可。
+
   需要注意的是，onSelectIconView和onIconView两个方法的返回值均为View，并会回调回上一次使用的View缓存对象，你可以通过判断返回的View是否为null来决定是否新建View对象。（PS：不判断缓存将导致你每次调用都会创建新的View对象。）
-  你可以直接创建并返回ImageView对象，也可以返回其他View子类，该模式可以用于显示网络图片，需要注意的是你需要手动给View添加LayoutParams来控制其大小，并只能使用RelativeLayout.LayoutParams，具体实现方式可以查看Demo <https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip/blob/master/app/src/main/java/com/lhh/apst/advancedpagerslidingtabstrip/ViewTabActivity.java>。
+
+  你可以直接创建并返回ImageView对象，也可以返回其他View子类，该模式可以用于显示网络图片，需要注意的是你需要手动给View添加LayoutParams来控制其大小，并只能使用RelativeLayout.LayoutParams，具体实现方式可以查看[Demo]<https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip/blob/master/app/src/main/java/com/lhh/apst/advancedpagerslidingtabstrip/ViewTabActivity.java>。
 
 二、自定义Tab
 
-  我知道以上模式可能并不能完全满足需求，有时候可能我们需要的是更复杂的Tab，所以添加自定义tab来满足各种各样的需求。当前自定义tab被封装到另一个tab类中，通过使用CustomPagerSlidingTabStrip控件来实现，该控件的所有使用方法和AdvancedPagerSlidingTabStrip一致。
-  通过将Adapter实现CustomPagerSlidingTabStrip.CustomTabProvider并实现其中getSelectTabView（选中的View）和getDisSelectTabView（未选中的View）方法来实现自定义Tab，两个方法同样会回调上一次使用的View缓存对象。具体实现方式可以查看Demo<https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip/blob/master/app/src/main/java/com/lhh/apst/advancedpagerslidingtabstrip/CustomTabActivity.java>。
+  我知道以上模式可能并不能完全满足需求，有时候可能我们需要的是更复杂的Tab，所以添加自定义tab来满足各种各样的需求。
+
+  当前自定义tab被封装到另一个tab类中，通过使用CustomPagerSlidingTabStrip控件来实现，该控件的所有使用方法和AdvancedPagerSlidingTabStrip一致。
+
+  通过将Adapter实现CustomPagerSlidingTabStrip.CustomTabProvider并实现其中getSelectTabView（选中的View）和getDisSelectTabView（未选中的View）方法来实现自定义Tab，两个方法同样会回调上一次使用的View缓存对象。具体实现方式可以查看[Demo]<https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip/blob/master/app/src/main/java/com/lhh/apst/advancedpagerslidingtabstrip/CustomTabActivity.java>。
 
 # XML样式参数
 
