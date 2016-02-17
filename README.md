@@ -38,7 +38,7 @@ or
 ```
 
 
-#用法
+##用法
 
 基本AdvancedPagerPagerSlidingTabStrip：
 
@@ -87,7 +87,7 @@ AdvancedPagerSlidingTabStrip支持绑定OnPageChangeListener，并且不影响�
 
     tabs.showDot(0, “99+”);
 
-# Tab显示模式
+## Tab显示模式
 
 一、基本Adapter显示
 
@@ -117,7 +117,7 @@ AdvancedPagerSlidingTabStrip支持绑定OnPageChangeListener，并且不影响�
 
   通过将Adapter实现CustomPagerSlidingTabStrip.CustomTabProvider并实现其中getSelectTabView（选中的View）和getDisSelectTabView（未选中的View）方法来实现自定义Tab，两个方法同样会回调上一次使用的View缓存对象。具体实现方式可以查看[Demo](https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip/blob/master/app/src/main/java/com/lhh/apst/advancedpagerslidingtabstrip/CustomTabActivity.java)。
 
-# XML样式参数
+## XML样式参数
 
  * `tabIndicatorColor` 导航条的颜色
  * `tabUnderlineColor` Tab底部下划线的颜色
@@ -135,9 +135,24 @@ AdvancedPagerSlidingTabStrip支持绑定OnPageChangeListener，并且不影响�
  * `tabTextSelectColor` 你所选择的那个tab的颜色
  * `tabDrawMode` 绘制模式，text或者normal，用于是否将下划线绘制为跟随TextView
 
-# Developed By
+## Developed By
 
  * Linhonghong - <linhh90@163.com>
 
  该组件基于Andreas Stuetz的PagerSlidingTabStrip[Github](https://github.com/astuetz/PagerSlidingTabStrip/)
 
+
+##License
+Copyright 2016 LinHongHong
+
+Licensed under the Apache License, Version 2.0 (the "License");
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an "AS IS" BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
