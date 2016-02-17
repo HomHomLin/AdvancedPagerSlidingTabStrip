@@ -2,32 +2,44 @@
 
 Android AdvancedPagerSlidingTabStrip是一种Android平台的导航控件，完美兼容Android自带库和兼容库的`ViewPager`组件。
 
-#新更新！
+## Feature
+ * 支持Tab小圆点以及数量显示和隐藏
+ * 支持自定义Tab View
+ * 支持使用Bitmap、Drawable和本地resId来显示Tab图标
+ * 支持对Tab图标替换成自定义View来加载网络图片
 
-last version: v1.0.0
+Project site： <https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip>.
 
-new version: v1.0.2b
+#最新版本
+v1.2.0
 
-NEXT :
-
-我将会更新demo，并增加几个功能，包括：将小圆点换成带有数字显示的形态；单独的tab背景效果，不再用绘制方式（已经完成）；可以循环拉动，到最后的时候会拉回到第一个。
-以及文档的更新，一些细节优化和bug修复，以及将库打包，可以直接gradle。
-
-# v1.0.1内容:
-
-①将tab的indicateLine变为和textview长度一致的形态，现在多了一种显示效果。
-
-②现在iconTab也可以显示小圆点了!iconTab情况下有新消息也可以展示了。
-
-# v1.0.2b内容（2015年9月22日）：
-
-①增加可以自定义view的tab：customtab，文档后续会介绍，还缺少一些优化，会持续关注
 
 ![p1](http://ww4.sinaimg.cn/mw1024/6e4e0c91gw1euym6rifr7j20810g2dgl.jpg)![p2](http://ww2.sinaimg.cn/bmiddle/6e4e0c91gw1euym6s3jw3j20810g2dgm.jpg)![p3](http://ww1.sinaimg.cn/bmiddle/6e4e0c91gw1euymy0xtn7j20810g2dgl.jpg)![p4](http://ww1.sinaimg.cn/bmiddle/6e4e0c91gw1ew6q3hxg7qj20k00zkdh8.jpg)![p5](http://ww4.sinaimg.cn/bmiddle/6e4e0c91gw1ew6q95gmllj20k00zk400.jpg)![p6](http://ww3.sinaimg.cn/bmiddle/6e4e0c91gw1ewb9a9y0kyj20k00zkmym.jpg)
 
+##导入项目
+
+**Gradle dependency:**
+``` groovy
+compile 'homhomlin.lib:apsts:1.2.0'
+```
+
+or
+
+**Maven dependency:**
+``` xml
+<dependency>
+  <groupId>homhomlin.lib</groupId>
+  <artifactId>apsts</artifactId>
+  <version>1.2.0</version>
+</dependency>
+```
+
+
 #用法
 
-将Library导入工程，在需要添加的界面xml中添加组件和ViewPager
+基本AdvancedPagerPagerSlidingTabStrip：
+
+在需要添加的界面xml中添加组件和ViewPager
 
     <com.lhh.apst.library.AdvancedPagerSlidingTabStrip
         android:id="@+id/tabs"
@@ -66,59 +78,53 @@ AdvancedPagerSlidingTabStrip支持绑定OnPageChangeListener，并且不影响�
 
     tabs.setOnPageChangeListener(mPageChangeListener);
 
-# 特点
+通过调用AdvancedPagerSlidingTabStrip的showDot(int index)和hideDot（int index）来显示或者隐藏Tab上的小圆点，index代表需要显示和隐藏的tab序列位置（0 ~ N）。
+通过调用showDot(int index,String txt)方法可以显示小圆点文字，并同样通过hideDot来隐藏。如：
 
-一、现在你可以使用带有文字和图片的Tab了，并且带有多种切换的效果。
+    tabs.showDot(0, “99+”);
 
-  1.带有文字的图片
-  只需要将你的Adapter实现AdvancedPagerSlidingTabStrip.IconTabProvider即可。其中提供getPageIconText(int index)方法用于返回index位置的图片文字。
+# Tab显示模式
 
-  2.切换效果
-  AdvancedPagerSlidingTabStrip.IconTabProvider中提供了getPageIconSelectResId(int index)和getPageIconResId(int index)两个方法，前者用于实现选中时候的图片效果，后者用于实现默认情况下的图片效果。
+一、基本Adapter显示
 
+  1.纯文本显示
+  通过实现Adapter内的getPageTitle()接口即可显示纯文本情况的效果。
 
-二、带有提示小点的tab。现在你可以通过AdvancedPagerSlidingTabStrip实现像iOS一样的红点提示功能了。
+  2.图文显示
+  通过将Adapter实现AdvancedPagerSlidingTabStrip.IconTabProvider接口，并实现其中的getPageIcon（展示未选中的图片）、getPageSelectIcon（展示选中的图片）和getPageIconText（展示的文本）方法即可显示图文效果。
+  其中getPageIcon（展示未选中的图片）和getPageSelectIcon方法可以通过改变方法返回值来显示不同类型的图片，可以选择的返回值为Bitmap、Drawable和ResId。
 
-   1.带有提示点的tab
-     只需要调用AdvancedPagerSlidingTabStrip的showDot(int index)或者hideDot(int index)即可实现红点的显示和隐藏两个方法，index代表需要显示和隐藏的tab序列位置（0 ~ N）。
-     该方法对任意一种tab（IconTab和TextTab都有效）。
+  3.自定义图片View显示
+  通过将Adapter实现AdvancedPagerSlidingTabStrip.ViewTabProvider接口，并实现其中的onSelectIconView（选中的自定义图片View）、onIconView（未选中的自定义图片View）和getPageIconText（文本）方法即可。
+  需要注意的是，onSelectIconView和onIconView两个方法的返回值均为View，并会回调回上一次使用的View缓存对象，你可以通过判断返回的View是否为null来决定是否新建View对象。（PS：不判断缓存将导致你每次调用都会创建新的View对象。）
+  你可以直接创建并返回ImageView对象，也可以返回其他View子类，该模式可以用于显示网络图片，需要注意的是你需要手动给View添加LayoutParams来控制其大小，并只能使用RelativeLayout.LayoutParams，具体实现方式可以查看Demo <https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip/blob/master/app/src/main/java/com/lhh/apst/advancedpagerslidingtabstrip/ViewTabActivity.java>。
 
-三、跟随TextView的动态显示效果模式。现在你可以通过AdvancedPagerSlidingTabStrip实现下划线跟随TextView的动态效果了。任意tab都有效果！
+二、自定义Tab
 
-四、自定义View形式的Tab。你可以通过实现为每个View自定义的形式来创建属于你自己的Tab。
+  我知道以上模式可能并不能完全满足需求，有时候可能我们需要的是更复杂的Tab，所以添加自定义tab来满足各种各样的需求。当前自定义tab被封装到另一个tab类中，通过使用CustomPagerSlidingTabStrip控件来实现，该控件的所有使用方法和AdvancedPagerSlidingTabStrip一致。
+  通过将Adapter实现CustomPagerSlidingTabStrip.CustomTabProvider并实现其中getSelectTabView（选中的View）和getDisSelectTabView（未选中的View）方法来实现自定义Tab，两个方法同样会回调上一次使用的View缓存对象。具体实现方式可以查看Demo<https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip/blob/master/app/src/main/java/com/lhh/apst/advancedpagerslidingtabstrip/CustomTabActivity.java>。
 
-    通过将Adapter实现CustomTabProvider接口，实现其中的getDisSelectTabView(int position, View convertView)和getSelectTabView(int position, View convertView) 回调即可，前者为非选中状态下的TabView视图，后者为选中状态下的TabView视图，具体查看demo。
+# XML样式参数
 
-五、BUG修复和参数增加
-
-    默认情况下一些字体和颜色设置无效的问题也在AdvancedPagerSlidingTabStrip中得到了修复。
-
-# 参数
-
- * `indicatorColor` Color of the sliding indicator
- * `underlineColor` Color of the full-width line on the bottom of the view
- * `dividerColor` Color of the dividers between tabs
- * `indicatorHeight`Height of the sliding indicator
- * `underlineHeight` Height of the full-width line on the bottom of the view
- * `dividerPadding` Top and bottom padding of the dividers
- * `tabPaddingLeftRight` Left and right padding of each tab
- * `tabPaddingTopBottom` Top and bottom padding of each tab
- * `scrollOffset` Scroll offset of the selected tab
- * `tabBackground` Background drawable of each tab, should be a StateListDrawable
- * `shouldExpand` If set to true, each tab is given the same weight, default false
- * `textAllCaps` Tab的文字是否为全部大写，如果是true就全部大写，默认为true
+ * `tabIndicatorColor` 导航条的颜色
+ * `tabUnderlineColor` Tab底部下划线的颜色
+ * `tabDividerColor` 每个Tab之间的分割线颜色
+ * `tabstabTextSelectColor` 被选中的Tab的文本字体颜色
+ * `tabIndicatorHeight` 导航条的高度
+ * `tabUnderlineHeight` Tab底部下划线的高度
+ * `tabDividerPadding` Tab分割线的padding
+ * `tabPaddingLeftRight` 每个Tab的左右padding
+ * `tabPaddingTopBottom` 每个Tab的上下padding
+ * `tabScrollOffset` 选中tab的滑动offset
+ * `tabBackground` tab的背景
+ * `tabShouldExpand` 伸缩情况，如果为真，每个tab都是相同的weight，默认是false
+ * `tabTextAllCaps` Tab的文字是否为全部大写，如果是true就全部大写，默认为true
  * `tabTextSelectColor` 你所选择的那个tab的颜色
- * `apsts_draw_mode` 绘制模式，text或者normal，用于是否将下划线绘制为跟随TextView
-
-# 更新日志
-
-### 当前版本: 1.0.1
+ * `tabDrawMode` 绘制模式，text或者normal，用于是否将下划线绘制为跟随TextView
 
 # Developed By
 
- * Linhonghong - <linhh90@163.com> (本小弟，^_^)
+ * Linhonghong - <linhh90@163.com>
 
-#PS
-
-  该组件基于Andreas Stuetz的PagerSlidingTabStrip[Github](https://github.com/astuetz/PagerSlidingTabStrip/)
+ 该组件基于Andreas Stuetz的PagerSlidingTabStrip[Github](https://github.com/astuetz/PagerSlidingTabStrip/)
 
