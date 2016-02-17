@@ -10,11 +10,14 @@ Android AdvancedPagerSlidingTabStrip是一种Android平台的导航控件，完�
 
 Project site： <https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip>.
 
-#最新版本
-v1.2.0
+最新版本:v1.2.0
 
 
-![p1](http://ww4.sinaimg.cn/mw1024/6e4e0c91gw1euym6rifr7j20810g2dgl.jpg)![p2](http://ww2.sinaimg.cn/bmiddle/6e4e0c91gw1euym6s3jw3j20810g2dgm.jpg)![p3](http://ww1.sinaimg.cn/bmiddle/6e4e0c91gw1euymy0xtn7j20810g2dgl.jpg)![p4](http://ww1.sinaimg.cn/bmiddle/6e4e0c91gw1ew6q3hxg7qj20k00zkdh8.jpg)![p5](http://ww4.sinaimg.cn/bmiddle/6e4e0c91gw1ew6q95gmllj20k00zk400.jpg)![p6](http://ww3.sinaimg.cn/bmiddle/6e4e0c91gw1ewb9a9y0kyj20k00zkmym.jpg)
+![p1](https://raw.githubusercontent.com/HomHomLin/AdvancedPagerSlidingTabStrip/master/Pic/Screen_20160216163404.png)
+
+![p2](https://raw.githubusercontent.com/HomHomLin/AdvancedPagerSlidingTabStrip/master/Pic/Screen_20160216163428.png)
+
+![p3](https://raw.githubusercontent.com/HomHomLin/AdvancedPagerSlidingTabStrip/master/Pic/Screen_20160216163452.png)
 
 ##导入项目
 
