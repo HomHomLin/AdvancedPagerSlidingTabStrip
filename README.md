@@ -51,16 +51,16 @@ or
 
     <style name="pagertab_style">
         <item name="android:background">@drawable/tab_bg_normal</item>
-        <item name="ptabBackground">@drawable/tab_bg_transparent</item>
+        <item name="tabBackground">@drawable/tab_bg_transparent</item>
         <item name="android:textSize">13sp</item>
         <item name="android:textAppearance">@style/CustomTabPageIndicator.Text</item>
         <item name="android:textColor">@drawable/tab_color_select</item>
-        <item name="indicatorColor">@color/home_bar_text_push</item>
-        <item name="underlineColor">#1A000000</item>
-        <item name="dividerColor">#00000000</item>
-        <item name="shouldExpand">false</item>
+        <item name="tabIndicatorColor">@color/home_bar_text_push</item>
+        <item name="tabUnderlineColor">#1A000000</item>
+        <item name="tabDividerColor">#00000000</item>
+        <item name="tabShouldExpand">false</item>
         <item name="tabPaddingLeftRight">8dp</item>
-        <item name="apsts_draw_mode">text</item>
+        <item name="tabDrawMode">text</item>
         <item name="tabTextSelectColor">@color/home_bar_text_push</item>
     </style>
 
@@ -104,7 +104,7 @@ AdvancedPagerSlidingTabStrip支持绑定OnPageChangeListener，并且不影响�
 
   需要注意的是，onSelectIconView和onIconView两个方法的返回值均为View，并会回调回上一次使用的View缓存对象，你可以通过判断返回的View是否为null来决定是否新建View对象。（PS：不判断缓存将导致你每次调用都会创建新的View对象。）
 
-  你可以直接创建并返回ImageView对象，也可以返回其他View子类，该模式可以用于显示网络图片，需要注意的是你需要手动给View添加LayoutParams来控制其大小，并只能使用RelativeLayout.LayoutParams，具体实现方式可以查看[Demo]<https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip/blob/master/app/src/main/java/com/lhh/apst/advancedpagerslidingtabstrip/ViewTabActivity.java>。
+  你可以直接创建并返回ImageView对象，也可以返回其他View子类，该模式可以用于显示网络图片，需要注意的是你需要手动给View添加LayoutParams来控制其大小，并只能使用RelativeLayout.LayoutParams，具体实现方式可以查看[Demo](https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip/blob/master/app/src/main/java/com/lhh/apst/advancedpagerslidingtabstrip/ViewTabActivity.java)。
 
 二、自定义Tab
 
@@ -112,7 +112,7 @@ AdvancedPagerSlidingTabStrip支持绑定OnPageChangeListener，并且不影响�
 
   当前自定义tab被封装到另一个tab类中，通过使用CustomPagerSlidingTabStrip控件来实现，该控件的所有使用方法和AdvancedPagerSlidingTabStrip一致。
 
-  通过将Adapter实现CustomPagerSlidingTabStrip.CustomTabProvider并实现其中getSelectTabView（选中的View）和getDisSelectTabView（未选中的View）方法来实现自定义Tab，两个方法同样会回调上一次使用的View缓存对象。具体实现方式可以查看[Demo]<https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip/blob/master/app/src/main/java/com/lhh/apst/advancedpagerslidingtabstrip/CustomTabActivity.java>。
+  通过将Adapter实现CustomPagerSlidingTabStrip.CustomTabProvider并实现其中getSelectTabView（选中的View）和getDisSelectTabView（未选中的View）方法来实现自定义Tab，两个方法同样会回调上一次使用的View缓存对象。具体实现方式可以查看[Demo](https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip/blob/master/app/src/main/java/com/lhh/apst/advancedpagerslidingtabstrip/CustomTabActivity.java)。
 
 # XML样式参数
 
