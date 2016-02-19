@@ -16,6 +16,8 @@ import com.lhh.apst.fragments.SecondFragment;
 import com.lhh.apst.fragments.ThirdFragment;
 import com.lhh.apst.library.AdvancedPagerSlidingTabStrip;
 
+import lib.lhh.fiv.library.FrescoImageView;
+
 /**
  * Created by Linhh on 16/2/16.
  */
@@ -120,13 +122,13 @@ public class ViewTabActivity  extends ActionBarActivity implements ViewPager.OnP
 
         @Override
         public View onSelectIconView(int position, View view, ViewGroup parent) {
-            FrescoThumbnailView draweeView;
+            FrescoImageView draweeView;
             if(view == null){
-                draweeView = new FrescoThumbnailView(ViewTabActivity.this);
+                draweeView = new FrescoImageView(ViewTabActivity.this);
                 draweeView.setLayoutParams(new RelativeLayout.LayoutParams(50,50));
                 view = draweeView;
             }
-            draweeView = (FrescoThumbnailView)view;
+            draweeView = (FrescoImageView)view;
             switch (position){
                 case  VIEW_FIRST:
                     draweeView.loadView("https://raw.githubusercontent.com/HomHomLin/AdvancedPagerSlidingTabStrip/master/Pic/categry_icon_p.png",R.mipmap.home_categry_icon_f_n);
@@ -148,13 +150,13 @@ public class ViewTabActivity  extends ActionBarActivity implements ViewPager.OnP
 
         @Override
         public View onIconView(int position, View view, ViewGroup parent) {
-            FrescoThumbnailView draweeView;
+            FrescoImageView draweeView;
             if(view == null){
-                draweeView = new FrescoThumbnailView(ViewTabActivity.this);
+                draweeView = new FrescoImageView(ViewTabActivity.this);
                 draweeView.setLayoutParams(new RelativeLayout.LayoutParams(50,50));
                 view = draweeView;
             }
-            draweeView = (FrescoThumbnailView)view;
+            draweeView = (FrescoImageView)view;
             switch (position){
                 case  VIEW_FIRST:
                     draweeView.loadView("https://raw.githubusercontent.com/HomHomLin/AdvancedPagerSlidingTabStrip/master/Pic/categry_icon_n.png",R.mipmap.home_categry_icon_n);
