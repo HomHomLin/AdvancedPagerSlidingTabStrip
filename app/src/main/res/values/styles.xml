@@ -12,32 +12,32 @@
     <!--pager tab-->
     <style name="pagertab_style">
         <item name="android:background">@drawable/tab_bg_normal</item>
-        <item name="tabBackground">@drawable/tab_bg_transparent</item>
+        <item name="apTabBackground">@drawable/tab_bg_transparent</item>
         <item name="android:textSize">13sp</item>
         <item name="android:textAppearance">@style/CustomTabPageIndicator.Text</item>
         <item name="android:textColor">@drawable/tab_color_select</item>
-        <item name="tabIndicatorColor">@color/home_bar_text_push</item>
-        <item name="tabUnderlineColor">#1A000000</item>
-        <item name="tabDividerColor">#00000000</item>
-        <item name="tabShouldExpand">false</item>
-        <item name="tabPaddingLeftRight">8dp</item>
-        <item name="tabDrawMode">text</item>
-        <item name="tabTextSelectColor">@color/home_bar_text_push</item>
+        <item name="apTabIndicatorColor">@color/home_bar_text_push</item>
+        <item name="apTabUnderlineColor">#1A000000</item>
+        <item name="apTabDividerColor">#00000000</item>
+        <item name="apTabShouldExpand">false</item>
+        <item name="apTabPaddingLeftRight">8dp</item>
+        <item name="apTabDrawMode">text</item>
+        <item name="apTabTextSelectColor">@color/home_bar_text_push</item>
     </style>
 
     <style name="pagertab_icon_style">
         <item name="android:background">@drawable/tab_bg_normal</item>
-        <item name="tabBackground">@drawable/tab_bg_normal</item>
+        <item name="apTabBackground">@drawable/tab_bg_normal</item>
         <item name="android:textSize">11sp</item>
         <item name="android:textColor">@drawable/tab_color_select</item>
         <item name="android:textAppearance">@style/CustomTabPageIndicator.Text</item>
-        <item name="tabIndicatorColor">@color/home_bar_text_push</item>
-        <item name="tabUnderlineColor">#1A000000</item>
-        <item name="tabDividerColor">#00000000</item>
-        <item name="tabShouldExpand">false</item>
-        <item name="tabPaddingLeftRight">8dp</item>
-        <item name="tabPaddingTopBottom">6dp</item>
-        <item name="tabTextSelectColor">@color/home_bar_text_push</item>
+        <item name="apTabIndicatorColor">@color/home_bar_text_push</item>
+        <item name="apTabUnderlineColor">#1A000000</item>
+        <item name="apTabDividerColor">#00000000</item>
+        <item name="apTabShouldExpand">false</item>
+        <item name="apTabPaddingLeftRight">8dp</item>
+        <item name="apTabPaddingTopBottom">6dp</item>
+        <item name="apTabTextSelectColor">@color/home_bar_text_push</item>
     </style>
 
 </resources>

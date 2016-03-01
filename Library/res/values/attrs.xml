@@ -2,20 +2,20 @@
 <resources>
     <!--apsts-->
     <declare-styleable name="AdvancedPagerSlidingTabStrip">
-        <attr name="tabIndicatorColor" format="color"/>
-        <attr name="tabUnderlineColor" format="color"/>
-        <attr name="tabDividerColor" format="color"/>
-        <attr name="tabTextSelectColor" format="color"/>
-        <attr name="tabIndicatorHeight" format="dimension"/>
-        <attr name="tabUnderlineHeight" format="dimension"/>
-        <attr name="tabDividerPadding" format="dimension"/>
-        <attr name="tabPaddingLeftRight" format="dimension"/>
-        <attr name="tabPaddingTopBottom" format="dimension"/>
-        <attr name="tabScrollOffset" format="dimension"/>
-        <attr name="tabBackground" format="reference"/>
-        <attr name="tabShouldExpand" format="boolean"/>
-        <attr name="tabTextAllCaps" format="boolean"/>
-        <attr name="tabDrawMode" format="enum">
+        <attr name="apTabIndicatorColor" format="color"/>
+        <attr name="apTabUnderlineColor" format="color"/>
+        <attr name="apTabDividerColor" format="color"/>
+        <attr name="apTabTextSelectColor" format="color"/>
+        <attr name="apTabIndicatorHeight" format="dimension"/>
+        <attr name="apTabUnderlineHeight" format="dimension"/>
+        <attr name="apTabDividerPadding" format="dimension"/>
+        <attr name="apTabPaddingLeftRight" format="dimension"/>
+        <attr name="apTabPaddingTopBottom" format="dimension"/>
+        <attr name="apTabScrollOffset" format="dimension"/>
+        <attr name="apTabBackground" format="reference"/>
+        <attr name="apTabShouldExpand" format="boolean"/>
+        <attr name="apTabTextAllCaps" format="boolean"/>
+        <attr name="apTabDrawMode" format="enum">
             <enum name="normal" value="0"/>
             <enum name="text" value="1"/>
         </attr>

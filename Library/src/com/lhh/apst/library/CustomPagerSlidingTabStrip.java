@@ -111,17 +111,17 @@ public class CustomPagerSlidingTabStrip extends HorizontalScrollView {
 
         a = context.obtainStyledAttributes(attrs, R.styleable.AdvancedPagerSlidingTabStrip);
 
-        indicatorColor = a.getColor(R.styleable.AdvancedPagerSlidingTabStrip_tabIndicatorColor, indicatorColor);
-        underlineColor = a.getColor(R.styleable.AdvancedPagerSlidingTabStrip_tabUnderlineColor, underlineColor);
-        dividerColor = a.getColor(R.styleable.AdvancedPagerSlidingTabStrip_tabDividerColor, dividerColor);
-        indicatorHeight = a.getDimensionPixelSize(R.styleable.AdvancedPagerSlidingTabStrip_tabIndicatorHeight, indicatorHeight);
-        underlineHeight = a.getDimensionPixelSize(R.styleable.AdvancedPagerSlidingTabStrip_tabUnderlineHeight, underlineHeight);
-        dividerPadding = a.getDimensionPixelSize(R.styleable.AdvancedPagerSlidingTabStrip_tabDividerPadding, dividerPadding);
-        tabPadding = a.getDimensionPixelSize(R.styleable.AdvancedPagerSlidingTabStrip_tabPaddingLeftRight, tabPadding);
-        tabPaddingTopBottom = a.getDimensionPixelSize(R.styleable.AdvancedPagerSlidingTabStrip_tabPaddingTopBottom, tabPaddingTopBottom);
-        tabBackgroundResId = a.getResourceId(R.styleable.AdvancedPagerSlidingTabStrip_tabBackground, tabBackgroundResId);
-        shouldExpand = a.getBoolean(R.styleable.AdvancedPagerSlidingTabStrip_tabShouldExpand, shouldExpand);
-        scrollOffset = a.getDimensionPixelSize(R.styleable.AdvancedPagerSlidingTabStrip_tabScrollOffset, scrollOffset);
+        indicatorColor = a.getColor(R.styleable.AdvancedPagerSlidingTabStrip_apTabIndicatorColor, indicatorColor);
+        underlineColor = a.getColor(R.styleable.AdvancedPagerSlidingTabStrip_apTabUnderlineColor, underlineColor);
+        dividerColor = a.getColor(R.styleable.AdvancedPagerSlidingTabStrip_apTabDividerColor, dividerColor);
+        indicatorHeight = a.getDimensionPixelSize(R.styleable.AdvancedPagerSlidingTabStrip_apTabIndicatorHeight, indicatorHeight);
+        underlineHeight = a.getDimensionPixelSize(R.styleable.AdvancedPagerSlidingTabStrip_apTabUnderlineHeight, underlineHeight);
+        dividerPadding = a.getDimensionPixelSize(R.styleable.AdvancedPagerSlidingTabStrip_apTabDividerPadding, dividerPadding);
+        tabPadding = a.getDimensionPixelSize(R.styleable.AdvancedPagerSlidingTabStrip_apTabPaddingLeftRight, tabPadding);
+        tabPaddingTopBottom = a.getDimensionPixelSize(R.styleable.AdvancedPagerSlidingTabStrip_apTabPaddingTopBottom, tabPaddingTopBottom);
+        tabBackgroundResId = a.getResourceId(R.styleable.AdvancedPagerSlidingTabStrip_apTabBackground, tabBackgroundResId);
+        shouldExpand = a.getBoolean(R.styleable.AdvancedPagerSlidingTabStrip_apTabShouldExpand, shouldExpand);
+        scrollOffset = a.getDimensionPixelSize(R.styleable.AdvancedPagerSlidingTabStrip_apTabScrollOffset, scrollOffset);
 
         a.recycle();
 

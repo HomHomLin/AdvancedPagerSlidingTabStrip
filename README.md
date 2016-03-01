@@ -10,7 +10,7 @@ Android AdvancedPagerSlidingTabStrip是一种Android平台的导航控件，完�
 
 Project site： <https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip>.
 
-最新版本:v1.2.0
+最新版本:v1.3.0
 
 
 ![p1](https://raw.githubusercontent.com/HomHomLin/AdvancedPagerSlidingTabStrip/master/Pic/Screen_20160216163404.png)
@@ -23,7 +23,7 @@ Project site： <https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip>.
 
 **Gradle dependency:**
 ``` groovy
-compile 'homhomlin.lib:apsts:1.2.0'
+compile 'homhomlin.lib:apsts:1.3.0'
 ```
 
 or
@@ -33,7 +33,7 @@ or
 <dependency>
   <groupId>homhomlin.lib</groupId>
   <artifactId>apsts</artifactId>
-  <version>1.2.0</version>
+  <version>1.3.0</version>
 </dependency>
 ```
 
@@ -54,17 +54,17 @@ or
 
     <style name="pagertab_style">
         <item name="android:background">@drawable/tab_bg_normal</item>
-        <item name="tabBackground">@drawable/tab_bg_transparent</item>
+        <item name="apTabBackground">@drawable/tab_bg_transparent</item>
         <item name="android:textSize">13sp</item>
         <item name="android:textAppearance">@style/CustomTabPageIndicator.Text</item>
         <item name="android:textColor">@drawable/tab_color_select</item>
-        <item name="tabIndicatorColor">@color/home_bar_text_push</item>
-        <item name="tabUnderlineColor">#1A000000</item>
-        <item name="tabDividerColor">#00000000</item>
-        <item name="tabShouldExpand">false</item>
-        <item name="tabPaddingLeftRight">8dp</item>
-        <item name="tabDrawMode">text</item>
-        <item name="tabTextSelectColor">@color/home_bar_text_push</item>
+        <item name="apTabIndicatorColor">@color/home_bar_text_push</item>
+        <item name="apTabUnderlineColor">#1A000000</item>
+        <item name="apTabDividerColor">#00000000</item>
+        <item name="apTabShouldExpand">false</item>
+        <item name="apTabPaddingLeftRight">8dp</item>
+        <item name="apTabDrawMode">text</item>
+        <item name="apTabTextSelectColor">@color/home_bar_text_push</item>
     </style>
 
 在代码中find该组件，并且设置adapter和ViewPager。
@@ -119,21 +119,21 @@ AdvancedPagerSlidingTabStrip支持绑定OnPageChangeListener，并且不影响�
 
 ## XML样式参数
 
- * `tabIndicatorColor` 导航条的颜色
- * `tabUnderlineColor` Tab底部下划线的颜色
- * `tabDividerColor` 每个Tab之间的分割线颜色
- * `tabstabTextSelectColor` 被选中的Tab的文本字体颜色
- * `tabIndicatorHeight` 导航条的高度
- * `tabUnderlineHeight` Tab底部下划线的高度
- * `tabDividerPadding` Tab分割线的padding
- * `tabPaddingLeftRight` 每个Tab的左右padding
- * `tabPaddingTopBottom` 每个Tab的上下padding
- * `tabScrollOffset` 选中tab的滑动offset
- * `tabBackground` tab的背景
- * `tabShouldExpand` 伸缩情况，如果为真，每个tab都是相同的weight，默认是false
- * `tabTextAllCaps` Tab的文字是否为全部大写，如果是true就全部大写，默认为true
- * `tabTextSelectColor` 你所选择的那个tab的颜色
- * `tabDrawMode` 绘制模式，text或者normal，用于是否将下划线绘制为跟随TextView
+ * `apTabIndicatorColor` 导航条的颜色
+ * `apTabUnderlineColor` Tab底部下划线的颜色
+ * `apTabDividerColor` 每个Tab之间的分割线颜色
+ * `apTabstabTextSelectColor` 被选中的Tab的文本字体颜色
+ * `apTabIndicatorHeight` 导航条的高度
+ * `apTabUnderlineHeight` Tab底部下划线的高度
+ * `apTabDividerPadding` Tab分割线的padding
+ * `apTabPaddingLeftRight` 每个Tab的左右padding
+ * `apTabPaddingTopBottom` 每个Tab的上下padding
+ * `apTabScrollOffset` 选中tab的滑动offset
+ * `apTabBackground` tab的背景
+ * `apTabShouldExpand` 伸缩情况，如果为真，每个tab都是相同的weight，默认是false
+ * `apTabTextAllCaps` Tab的文字是否为全部大写，如果是true就全部大写，默认为true
+ * `apTabTextSelectColor` 你所选择的那个tab的颜色
+ * `apTabDrawMode` 绘制模式，text或者normal，用于是否将下划线绘制为跟随TextView
 
 ## Developed By
 
