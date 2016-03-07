@@ -7,6 +7,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.widget.RelativeLayout;
 
 import com.lhh.apst.fragments.FirstFragment;
 import com.lhh.apst.fragments.FourthFragment;
@@ -75,7 +76,7 @@ public class IconTabActivity extends ActionBarActivity implements ViewPager.OnPa
 
     }
 
-    public class FragmentAdapter extends FragmentStatePagerAdapter implements AdvancedPagerSlidingTabStrip.IconTabProvider{
+    public class FragmentAdapter extends FragmentStatePagerAdapter implements AdvancedPagerSlidingTabStrip.IconTabProvider,AdvancedPagerSlidingTabStrip.LayoutProvider{
 
         public FragmentAdapter(FragmentManager fm) {
             super(fm);
@@ -117,7 +118,7 @@ public class IconTabActivity extends ActionBarActivity implements ViewPager.OnPa
         }
 
         @Override
-        public String getPageIconText(int position) {
+        public CharSequence getPageTitle(int position) {
             if(position >= 0 && position < VIEW_SIZE){
                 switch (position){
                     case  VIEW_FIRST:
@@ -133,6 +134,46 @@ public class IconTabActivity extends ActionBarActivity implements ViewPager.OnPa
                 }
             }
             return null;
+        }
+
+        @Override
+        public float getPageWeight(int position) {
+            if(position >= 0 && position < VIEW_SIZE){
+                switch (position){
+                    case  VIEW_FIRST:
+                        return  1.0f;
+                    case  VIEW_SECOND:
+                        return  1.3f;
+                    case  VIEW_THIRD:
+                        return  1.3f;
+                    case  VIEW_FOURTH:
+                        return  1.0f;
+                    default:
+                        break;
+                }
+            }
+            return 1.0f;
+        }
+
+        @Override
+        public int[] getPageRule(int position) {
+            if(position >= 0 && position < VIEW_SIZE){
+                switch (position){
+                    case  VIEW_FIRST:
+                        return  new int[0];
+                    case  VIEW_SECOND:
+                        return  new int[]{
+                                RelativeLayout.ALIGN_PARENT_LEFT};
+                    case  VIEW_THIRD:
+                        return  new int[]{
+                                RelativeLayout.ALIGN_PARENT_RIGHT};
+                    case  VIEW_FOURTH:
+                        return  new int[0];
+                    default:
+                        break;
+                }
+            }
+            return new int[0];
         }
 
         @Override

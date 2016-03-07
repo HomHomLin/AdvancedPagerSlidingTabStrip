@@ -36,17 +36,20 @@ import java.util.Locale;
  */
 public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 
+    public interface LayoutProvider {
+        public float getPageWeight(int position);
+        public int[] getPageRule(int position);
+    }
+
     public interface IconTabProvider {
         public <T extends Object> T getPageIcon(int position);
         public <T extends Object> T getPageSelectIcon(int position);
-        public String getPageIconText(int position);
     }
 
     public interface ViewTabProvider{
 //        public View onCreateIconView(int position, View view, ViewGroup parent);
         public View onSelectIconView(int position, View view, ViewGroup parent);
         public View onIconView(int position, View view, ViewGroup parent);
-        public String getPageIconText(int position);
     }
 
     // @formatter:off
@@ -210,9 +213,9 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         for (int i = 0; i < tabCount; i++) {
 
             if (pager.getAdapter() instanceof IconTabProvider) {
-                addIconTab(i, ((IconTabProvider) pager.getAdapter()).getPageIcon(i), ((IconTabProvider) pager.getAdapter()).getPageIconText(i));
+                addIconTab(i, ((IconTabProvider) pager.getAdapter()).getPageIcon(i), pager.getAdapter().getPageTitle(i).toString());
             } else if(pager.getAdapter() instanceof ViewTabProvider){
-                addViewTab(i, ((ViewTabProvider) pager.getAdapter()));
+                addViewTab(i, ((ViewTabProvider) pager.getAdapter()),pager.getAdapter().getPageTitle(i).toString());
             } else {
 //                addIconTab(i, R.drawable.home_categry_icon_n, pager.getAdapter().getPageTitle(i).toString());
 
@@ -264,8 +267,17 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         txt.setGravity(Gravity.CENTER);
         txt.setSingleLine();
         txt.setId(R.id.id_tab_txt);
-        RelativeLayout.LayoutParams txtParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams txtParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
         txtParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        if(pager.getAdapter() instanceof LayoutProvider){
+            LayoutProvider layoutProvider = (LayoutProvider)pager.getAdapter();
+            for(Integer rule : layoutProvider.getPageRule(position)){
+                txtParams.addRule(rule);
+            }
+        }
+//        txtParams.addRule(RelativeLayout.CENTER_IN_PARENT);
         txt.setLayoutParams(txtParams);
 
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.psts_dot_wh), getResources().getDimensionPixelSize(R.dimen.psts_dot_wh));
@@ -329,7 +341,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         mViewTabCache.put(position, view);
     }
 
-    private void addViewTab(final int position, ViewTabProvider provider) {
+    private void addViewTab(final int position, ViewTabProvider provider, String title) {
 
         RelativeLayout tab = new RelativeLayout(getContext());
         tab.setOnClickListener(new OnClickListener() {
@@ -342,12 +354,22 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 
         //文本和图
         TextView txt = new TextView(getContext());
-        txt.setText(provider.getPageIconText(position));
+        txt.setText(title);
         txt.setFocusable(true);
         txt.setGravity(Gravity.CENTER);
         txt.setSingleLine();
         txt.setId(R.id.id_tab_txt);
-        RelativeLayout.LayoutParams txtParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams txtParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
+        txtParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
+        txtParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        if(pager.getAdapter() instanceof LayoutProvider){
+            LayoutProvider layoutProvider = (LayoutProvider)pager.getAdapter();
+            for(Integer rule : layoutProvider.getPageRule(position)){
+                txtParams.addRule(rule);
+            }
+        }
         txtParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
         txtParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
         txt.setLayoutParams(txtParams);
@@ -404,8 +426,17 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         txt.setGravity(Gravity.CENTER);
         txt.setSingleLine();
         txt.setId(R.id.id_tab_txt);
-        RelativeLayout.LayoutParams txtParams = new RelativeLayout.LayoutParams(RelativeLayout.LayoutParams.WRAP_CONTENT,RelativeLayout.LayoutParams.WRAP_CONTENT);
+        RelativeLayout.LayoutParams txtParams = new RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT);
         txtParams.addRule(RelativeLayout.CENTER_IN_PARENT);
+        if(pager.getAdapter() instanceof LayoutProvider){
+            LayoutProvider layoutProvider = (LayoutProvider)pager.getAdapter();
+            for(Integer rule : layoutProvider.getPageRule(position)){
+                txtParams.addRule(rule);
+            }
+        }
+//        txtParams.addRule(RelativeLayout.CENTER_IN_PARENT);
         txt.setLayoutParams(txtParams);
 
         setViewResource(res, txt);
@@ -475,11 +506,31 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 
     }
 
+    public void setTabLayoutParams(){
+        if(pager.getAdapter() instanceof LayoutProvider){
+            LayoutProvider weightProvider = (LayoutProvider)pager.getAdapter();
+            if(weightProvider == null){
+                return;
+            }
+            for (int i = 0; i < tabCount; i++) {
+                float weight = weightProvider.getPageWeight(i);
+                if(weight != 0.0f){
+                    LinearLayout.LayoutParams layoutParams = new LinearLayout.LayoutParams(0, LayoutParams.MATCH_PARENT, weight == 0.0f ? 1.0f : weight);
+                    tabsContainer.getChildAt(i).setLayoutParams(layoutParams);
+                }else{
+                    tabsContainer.getChildAt(i).setLayoutParams(expandedTabLayoutParams);
+                }
+
+            }
+        }
+    }
+
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
 
         if (!shouldExpand || MeasureSpec.getMode(widthMeasureSpec) == MeasureSpec.UNSPECIFIED) {
+            setTabLayoutParams();
             return;
         }
 
@@ -492,9 +543,10 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         if (!checkedTabWidths && childWidth > 0 && myWidth > 0) {
 
             if (childWidth <= myWidth) {
-                for (int i = 0; i < tabCount; i++) {
-                    tabsContainer.getChildAt(i).setLayoutParams(expandedTabLayoutParams);
-                }
+                setTabLayoutParams();
+//                for (int i = 0; i < tabCount; i++) {
+//                    tabsContainer.getChildAt(i).setLayoutParams(expandedTabLayoutParams);
+//                }
             }
 
             checkedTabWidths = true;

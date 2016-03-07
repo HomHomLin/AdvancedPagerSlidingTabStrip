@@ -78,7 +78,7 @@ public class NormalTabActivity extends ActionBarActivity implements ViewPager.On
 
     }
 
-    public class FragmentAdapter extends FragmentStatePagerAdapter {
+    public class FragmentAdapter extends FragmentStatePagerAdapter{
 
         public FragmentAdapter(FragmentManager fm) {
             super(fm);
@@ -137,5 +137,24 @@ public class NormalTabActivity extends ActionBarActivity implements ViewPager.On
             }
             return null;
         }
+//
+//        @Override
+//        public float getPageWeight(int position) {
+//            if(position >= 0 && position < VIEW_SIZE){
+//                switch (position){
+//                    case  VIEW_FIRST:
+//                        return  1.0f;
+//                    case  VIEW_SECOND:
+//                        return  2.0f;
+//                    case  VIEW_THIRD:
+//                        return  2.0f;
+//                    case  VIEW_FOURTH:
+//                        return  1.0f;
+//                    default:
+//                        break;
+//                }
+//            }
+//            return 1.0f;
+//        }
     }
 }
