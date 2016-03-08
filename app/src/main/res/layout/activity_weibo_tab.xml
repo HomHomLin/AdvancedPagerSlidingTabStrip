@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        android:id="@+id/rl_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:layout_alignParentBottom="true">
+        <com.lhh.apst.library.AdvancedPagerSlidingTabStrip
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="55dp"
+            style="@style/weibo_icon_style"
+            android:fillViewport="false"/>
+        <ImageView
+            android:id="@+id/ivCenterBtn"
+            android:layout_width="34dp"
+            android:layout_height="34dp"
+            android:padding="5dp"
+            android:layout_centerInParent="true"
+            android:background="#fa8100"
+            android:src="@mipmap/tabbar_compose_icon_add_highlighted"/>
+    </RelativeLayout>
+
+
+    <com.lhh.apst.advancedpagerslidingtabstrip.APSTSViewPager
+        android:id="@+id/vp_main"
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:layout_above="@id/rl_tabs"/>
+</RelativeLayout>

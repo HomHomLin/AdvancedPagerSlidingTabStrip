@@ -38,6 +38,10 @@
             android:name=".ViewTabActivity"
             android:label="@string/app_name" >
         </activity>
+        <activity
+            android:name=".WeiboTabActivity"
+            android:label="@string/app_name" >
+        </activity>
     </application>
 
 </manifest>

@@ -8,6 +8,7 @@ import android.graphics.Canvas;
 import android.graphics.Color;
 import android.graphics.Paint;
 import android.graphics.Paint.Style;
+import android.graphics.Rect;
 import android.graphics.Typeface;
 import android.graphics.drawable.BitmapDrawable;
 import android.graphics.drawable.Drawable;
@@ -44,6 +45,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
     public interface IconTabProvider {
         public <T extends Object> T getPageIcon(int position);
         public <T extends Object> T getPageSelectIcon(int position);
+        public Rect getPageIconBounds(int position);
     }
 
     public interface ViewTabProvider{
@@ -439,7 +441,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 //        txtParams.addRule(RelativeLayout.CENTER_IN_PARENT);
         txt.setLayoutParams(txtParams);
 
-        setViewResource(res, txt);
+        setViewResource(position,res, txt);
 
         RelativeLayout.LayoutParams layoutParams = new RelativeLayout.LayoutParams(getResources().getDimensionPixelSize(R.dimen.psts_dot_wh), getResources().getDimensionPixelSize(R.dimen.psts_dot_wh));
         TextView dot = new TextView(getContext());
@@ -506,11 +508,11 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 
     }
 
-    public void setTabLayoutParams(){
+    public boolean setTabLayoutParams(){
         if(pager.getAdapter() instanceof LayoutProvider){
             LayoutProvider weightProvider = (LayoutProvider)pager.getAdapter();
             if(weightProvider == null){
-                return;
+                return false;
             }
             for (int i = 0; i < tabCount; i++) {
                 float weight = weightProvider.getPageWeight(i);
@@ -523,6 +525,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 
             }
         }
+        return false;
     }
 
     @Override
@@ -543,10 +546,11 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         if (!checkedTabWidths && childWidth > 0 && myWidth > 0) {
 
             if (childWidth <= myWidth) {
-                setTabLayoutParams();
-//                for (int i = 0; i < tabCount; i++) {
-//                    tabsContainer.getChildAt(i).setLayoutParams(expandedTabLayoutParams);
-//                }
+                if(!setTabLayoutParams()){
+                    for (int i = 0; i < tabCount; i++) {
+                        tabsContainer.getChildAt(i).setLayoutParams(expandedTabLayoutParams);
+                    }
+                }
             }
 
             checkedTabWidths = true;
@@ -594,12 +598,10 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 
         rectPaint.setColor(indicatorColor);
 
-        // default: line below current tab
         View currentTab = tabsContainer.getChildAt(currentPosition);
         float lineLeft = currentTab.getLeft();
         float lineRight = currentTab.getRight();
 
-        // if there is an offset, start interpolating left and right coordinates between current and next tab
         if (currentPositionOffset > 0f && currentPosition < tabCount - 1) {
 
             View nextTab = tabsContainer.getChildAt(currentPosition + 1);
@@ -636,10 +638,8 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 
         rectPaint.setColor(indicatorColor);
 
-        // default: line below current tab
         View currentTab = tabsContainer.getChildAt(currentPosition);
         float lineLeft = currentTab.getLeft();
-//        float lineRight = currentTab.getRight();
 
         View currentTextView = ((RelativeLayout)currentTab).getChildAt(0);
         float currentTextViewLeft = currentTextView.getLeft();
@@ -650,10 +650,8 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 
             View nextTab = tabsContainer.getChildAt(currentPosition + 1);
             final float nextTabLeft = nextTab.getLeft();
-//            final float nextTabRight = nextTab.getRight();
 
             lineLeft = (currentPositionOffset * nextTabLeft + (1f - currentPositionOffset) * lineLeft);
-//            lineRight = (currentPositionOffset * nextTabRight + (1f - currentPositionOffset) * lineRight);
 
             View nextTextView = ((RelativeLayout)nextTab).getChildAt(0);
             float nextTextViewLeft = nextTextView.getLeft();
@@ -665,16 +663,6 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 
         //绘制提示下划线
         canvas.drawRect(lineLeft + currentTextViewLeft, height - indicatorHeight, lineLeft + currentTextViewRight , height, rectPaint);
-
-
-//        rectPaint.setColor(underlineColor);
-//        canvas.drawRect(0, height - underlineHeight, tabsContainer.getWidth(), height, rectPaint);
-
-//        for(int i = 0 ; i < tabCount - 1 ; i ++){
-//            View tab = tabsContainer.getChildAt(i);
-//            View tabTextView = ((LinearLayout)tab).getChildAt(0);
-//            canvas.drawRect(tab.getLeft() + tabTextView.getLeft(), height - underlineHeight, tab.getLeft() + tabTextView.getRight(), height, rectPaint);
-//        }
 
         // 分割线paint
 
@@ -736,20 +724,30 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 
     }
 
-    private void setViewResource(Object obj , TextView view){
+    private void setViewResource(int position ,Object obj , TextView view){
+        IconTabProvider iconTabProvider = (IconTabProvider)pager.getAdapter();
+        Rect rect = iconTabProvider.getPageIconBounds(position);
+        Drawable drawable = null;
         if(obj instanceof Integer) {
             int resId = (int) obj;
             if (resId != 0) {
-                view.setCompoundDrawablesWithIntrinsicBounds(0, resId, 0, 0);
+                drawable = ResourcesCompat.getDrawable(getResources(),resId,null);
             }
         }else if(obj instanceof Bitmap){
             Bitmap bitmap = (Bitmap) obj;
             if (bitmap != null) {
-                view.setCompoundDrawablesWithIntrinsicBounds(null, new BitmapDrawable(getResources(),bitmap), null, null);
+                drawable = new BitmapDrawable(getResources(),bitmap);
             }
         }else if(obj instanceof Drawable){
-            Drawable drawable = (Drawable) obj;
-            if (drawable != null) {
+            drawable = (Drawable) obj;
+
+        }
+
+        if (drawable != null) {
+            if(rect != null){
+                drawable.setBounds(rect);
+                view.setCompoundDrawables(null, drawable, null, null);
+            }else{
                 view.setCompoundDrawablesWithIntrinsicBounds(null, drawable, null, null);
             }
         }
@@ -762,7 +760,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
                 ((TextView) linearLayout.getChildAt(0)).setTextColor(tabTextSelectColor);
                 if (pager.getAdapter() instanceof IconTabProvider) {
                     Object obj = ((IconTabProvider) pager.getAdapter()).getPageSelectIcon(i);
-                    setViewResource(obj, (TextView) linearLayout.getChildAt(0));
+                    setViewResource(position, obj, (TextView) linearLayout.getChildAt(0));
 //                    ().setCompoundDrawablesWithIntrinsicBounds(0, ((IconTabProvider) pager.getAdapter()).getPageIconSelectResId(i), 0, 0);
                 }else if(pager.getAdapter() instanceof ViewTabProvider){
                     View view = ((ViewTabProvider) pager.getAdapter()).onSelectIconView(i,getTabView(i),linearLayout);
@@ -773,7 +771,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
                 ((TextView) linearLayout.getChildAt(0)).setTextColor(tabTextColor);
                 if (pager.getAdapter() instanceof IconTabProvider) {
                     Object obj = ((IconTabProvider) pager.getAdapter()).getPageIcon(i);
-                    setViewResource(obj, (TextView) linearLayout.getChildAt(0));
+                    setViewResource(position, obj, (TextView) linearLayout.getChildAt(0));
 //                    ((TextView) linearLayout.getChildAt(0)).setCompoundDrawablesWithIntrinsicBounds(0, ((IconTabProvider) pager.getAdapter()).getPageIconResId(i), 0, 0);
                 }else if(pager.getAdapter() instanceof ViewTabProvider){
                     View view = ((ViewTabProvider) pager.getAdapter()).onIconView(i, getTabView(i), linearLayout);

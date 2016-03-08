@@ -40,4 +40,19 @@
         <item name="apTabTextSelectColor">@color/home_bar_text_push</item>
     </style>
 
+    <style name="weibo_icon_style">
+        <item name="android:background">@drawable/weibo_tab_bg_normal</item>
+        <item name="apTabBackground">@drawable/weibo_tab_bg_normal</item>
+        <item name="android:textSize">11sp</item>
+        <item name="android:textColor">@drawable/tab_color_select</item>
+        <item name="android:textAppearance">@style/CustomTabPageIndicator.Text</item>
+        <item name="apTabIndicatorColor">@color/home_bar_text_push</item>
+        <item name="apTabUnderlineColor">#1A000000</item>
+        <item name="apTabDividerColor">#00000000</item>
+        <item name="apTabShouldExpand">false</item>
+        <item name="apTabPaddingLeftRight">8dp</item>
+        <item name="apTabPaddingTopBottom">6dp</item>
+        <item name="apTabTextSelectColor">@color/home_bar_text_push</item>
+    </style>
+
 </resources>

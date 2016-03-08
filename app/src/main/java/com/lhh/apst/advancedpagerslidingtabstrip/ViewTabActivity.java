@@ -79,7 +79,7 @@ public class ViewTabActivity  extends ActionBarActivity implements ViewPager.OnP
 
     }
 
-    public class FragmentAdapter extends FragmentStatePagerAdapter implements AdvancedPagerSlidingTabStrip.ViewTabProvider,AdvancedPagerSlidingTabStrip.LayoutProvider{
+    public class FragmentAdapter extends FragmentStatePagerAdapter implements AdvancedPagerSlidingTabStrip.ViewTabProvider{
 
         public FragmentAdapter(FragmentManager fm) {
             super(fm);
@@ -193,30 +193,6 @@ public class ViewTabActivity  extends ActionBarActivity implements ViewPager.OnP
                 }
             }
             return null;
-        }
-
-        @Override
-        public float getPageWeight(int position) {
-            if(position >= 0 && position < VIEW_SIZE){
-                switch (position){
-                    case  VIEW_FIRST:
-                        return  1.0f;
-                    case  VIEW_SECOND:
-                        return  2.0f;
-                    case  VIEW_THIRD:
-                        return  2.0f;
-                    case  VIEW_FOURTH:
-                        return  1.0f;
-                    default:
-                        break;
-                }
-            }
-            return 1.0f;
-        }
-
-        @Override
-        public int[] getPageRule(int position) {
-            return new int[0];
         }
 
     }

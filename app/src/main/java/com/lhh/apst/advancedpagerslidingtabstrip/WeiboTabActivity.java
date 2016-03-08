@@ -3,12 +3,14 @@ package com.lhh.apst.advancedpagerslidingtabstrip;
 import android.graphics.Rect;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
-import android.support.v4.app.FragmentActivity;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentStatePagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.ActionBarActivity;
+import android.view.View;
+import android.widget.ImageView;
 import android.widget.RelativeLayout;
+import android.widget.Toast;
 
 import com.lhh.apst.fragments.FirstFragment;
 import com.lhh.apst.fragments.FourthFragment;
@@ -17,9 +19,9 @@ import com.lhh.apst.fragments.ThirdFragment;
 import com.lhh.apst.library.AdvancedPagerSlidingTabStrip;
 
 /**
- * Created by linhonghong on 2015/8/11.
+ * Created by Linhh on 16/3/8.
  */
-public class IconTabActivity extends ActionBarActivity implements ViewPager.OnPageChangeListener{
+public class WeiboTabActivity extends ActionBarActivity implements ViewPager.OnPageChangeListener{
 
     public AdvancedPagerSlidingTabStrip mAPSTS;
     public APSTSViewPager mVP;
@@ -35,11 +37,14 @@ public class IconTabActivity extends ActionBarActivity implements ViewPager.OnPa
     private SecondFragment mSecondFragment = null;
     private ThirdFragment mThirdFragment = null;
     private FourthFragment mFourthFragment = null;
+    private ImageView mIvCenterBtn = null;
+
+    private int mSize = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_icon_tab);
+        setContentView(R.layout.activity_weibo_tab);
         findViews();
         init();
     }
@@ -47,9 +52,17 @@ public class IconTabActivity extends ActionBarActivity implements ViewPager.OnPa
     private void findViews(){
         mAPSTS = (AdvancedPagerSlidingTabStrip)findViewById(R.id.tabs);
         mVP = (APSTSViewPager)findViewById(R.id.vp_main);
+        mIvCenterBtn = (ImageView)findViewById(R.id.ivCenterBtn);
     }
 
     private void init(){
+        mIvCenterBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Toast.makeText(WeiboTabActivity.this, "Center Btn is Clicked.",Toast.LENGTH_SHORT).show();
+            }
+        });
+        mSize = getResources().getDimensionPixelSize(R.dimen.weibo_tab_size);
         mVP.setOffscreenPageLimit(VIEW_SIZE);
         FragmentAdapter adapter = new FragmentAdapter(getSupportFragmentManager());
 
@@ -77,7 +90,7 @@ public class IconTabActivity extends ActionBarActivity implements ViewPager.OnPa
 
     }
 
-    public class FragmentAdapter extends FragmentStatePagerAdapter implements AdvancedPagerSlidingTabStrip.IconTabProvider{
+    public class FragmentAdapter extends FragmentStatePagerAdapter implements AdvancedPagerSlidingTabStrip.IconTabProvider,AdvancedPagerSlidingTabStrip.LayoutProvider{
 
         public FragmentAdapter(FragmentManager fm) {
             super(fm);
@@ -138,17 +151,58 @@ public class IconTabActivity extends ActionBarActivity implements ViewPager.OnPa
         }
 
         @Override
+        public float getPageWeight(int position) {
+            return 0.0f;
+//            if(position >= 0 && position < VIEW_SIZE){
+//                switch (position){
+//                    case  VIEW_FIRST:
+//                        return  1.0f;
+//                    case  VIEW_SECOND:
+//                        return  1.0f;
+//                    case  VIEW_THIRD:
+//                        return  1.0f;
+//                    case  VIEW_FOURTH:
+//                        return  1.0f;
+//                    default:
+//                        break;
+//                }
+//            }
+//            return 1.0f;
+        }
+
+        @Override
+        public int[] getPageRule(int position) {
+            if(position >= 0 && position < VIEW_SIZE){
+                switch (position){
+                    case  VIEW_FIRST:
+                        return  new int[0];
+                    case  VIEW_SECOND:
+                        return  new int[]{
+                                RelativeLayout.ALIGN_PARENT_LEFT};
+                    case  VIEW_THIRD:
+                        return  new int[]{
+                                RelativeLayout.ALIGN_PARENT_RIGHT};
+                    case  VIEW_FOURTH:
+                        return  new int[0];
+                    default:
+                        break;
+                }
+            }
+            return new int[0];
+        }
+
+        @Override
         public Integer getPageIcon(int index) {
             if(index >= 0 && index < VIEW_SIZE){
                 switch (index){
                     case  VIEW_FIRST:
-                        return  R.mipmap.home_main_icon_n;
+                        return  R.mipmap.tabbar_home;
                     case VIEW_SECOND:
-                        return  R.mipmap.home_categry_icon_n;
+                        return  R.mipmap.tabbar_message_center;
                     case VIEW_THIRD:
-                        return  R.mipmap.home_live_icon_n;
+                        return  R.mipmap.tabbar_discover;
                     case VIEW_FOURTH:
-                        return  R.mipmap.home_mine_icon_n;
+                        return  R.mipmap.tabbar_profile;
                     default:
                         break;
                 }
@@ -161,13 +215,13 @@ public class IconTabActivity extends ActionBarActivity implements ViewPager.OnPa
             if(index >= 0 && index < VIEW_SIZE){
                 switch (index){
                     case  VIEW_FIRST:
-                        return  R.mipmap.home_main_icon_f_n;
+                        return  R.mipmap.tabbar_home_selected;
                     case VIEW_SECOND:
-                        return  R.mipmap.home_categry_icon_f_n;
+                        return  R.mipmap.tabbar_message_center_highlighted;
                     case VIEW_THIRD:
-                        return  R.mipmap.home_live_icon_f_n;
+                        return  R.mipmap.tabbar_discover_highlighted;
                     case VIEW_FOURTH:
-                        return  R.mipmap.home_mine_icon_f_n;
+                        return  R.mipmap.tabbar_profile_highlighted;
                     default:
                         break;
                 }
@@ -177,7 +231,7 @@ public class IconTabActivity extends ActionBarActivity implements ViewPager.OnPa
 
         @Override
         public Rect getPageIconBounds(int position) {
-            return null;
+            return new Rect(0, 0, mSize, mSize);
         }
     }
 }
