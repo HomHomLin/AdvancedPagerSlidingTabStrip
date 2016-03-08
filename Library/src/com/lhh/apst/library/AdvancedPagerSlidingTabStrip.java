@@ -40,6 +40,20 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
     public interface LayoutProvider {
         public float getPageWeight(int position);
         public int[] getPageRule(int position);
+        public Margins getPageMargins(int position);
+    }
+
+    public class Margins{
+        public int mLeft;
+        public int mRight;
+        public int mTop;
+        public int mBottom;
+        public Margins(int left, int top, int right, int bottom){
+            mLeft = left;
+            mRight = right;
+            mTop = top;
+            mBottom = bottom;
+        }
     }
 
     public interface IconTabProvider {
@@ -278,6 +292,10 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
             for(Integer rule : layoutProvider.getPageRule(position)){
                 txtParams.addRule(rule);
             }
+            Margins margins = layoutProvider.getPageMargins(position);
+            if(margins != null) {
+                txtParams.setMargins(margins.mLeft, margins.mTop, margins.mRight, margins.mBottom);
+            }
         }
 //        txtParams.addRule(RelativeLayout.CENTER_IN_PARENT);
         txt.setLayoutParams(txtParams);
@@ -371,6 +389,10 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
             for(Integer rule : layoutProvider.getPageRule(position)){
                 txtParams.addRule(rule);
             }
+            Margins margins = layoutProvider.getPageMargins(position);
+            if(margins != null) {
+                txtParams.setMargins(margins.mLeft, margins.mTop, margins.mRight, margins.mBottom);
+            }
         }
         txtParams.addRule(RelativeLayout.CENTER_HORIZONTAL);
         txtParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
@@ -436,6 +458,11 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
             LayoutProvider layoutProvider = (LayoutProvider)pager.getAdapter();
             for(Integer rule : layoutProvider.getPageRule(position)){
                 txtParams.addRule(rule);
+
+            }
+            Margins margins = layoutProvider.getPageMargins(position);
+            if(margins != null) {
+                txtParams.setMargins(margins.mLeft, margins.mTop, margins.mRight, margins.mBottom);
             }
         }
 //        txtParams.addRule(RelativeLayout.CENTER_IN_PARENT);

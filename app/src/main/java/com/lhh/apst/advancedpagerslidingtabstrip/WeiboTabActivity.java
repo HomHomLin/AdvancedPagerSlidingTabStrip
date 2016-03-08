@@ -192,6 +192,11 @@ public class WeiboTabActivity extends ActionBarActivity implements ViewPager.OnP
         }
 
         @Override
+        public AdvancedPagerSlidingTabStrip.Margins getPageMargins(int position) {
+            return null;
+        }
+
+        @Override
         public Integer getPageIcon(int index) {
             if(index >= 0 && index < VIEW_SIZE){
                 switch (index){
