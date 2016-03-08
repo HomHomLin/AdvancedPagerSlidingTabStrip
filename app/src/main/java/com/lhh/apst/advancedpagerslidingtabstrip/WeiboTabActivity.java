@@ -17,6 +17,7 @@ import com.lhh.apst.fragments.FourthFragment;
 import com.lhh.apst.fragments.SecondFragment;
 import com.lhh.apst.fragments.ThirdFragment;
 import com.lhh.apst.library.AdvancedPagerSlidingTabStrip;
+import com.lhh.apst.library.Margins;
 
 /**
  * Created by Linhh on 16/3/8.
@@ -192,7 +193,7 @@ public class WeiboTabActivity extends ActionBarActivity implements ViewPager.OnP
         }
 
         @Override
-        public AdvancedPagerSlidingTabStrip.Margins getPageMargins(int position) {
+        public Margins getPageMargins(int position) {
             return null;
         }
 

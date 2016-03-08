@@ -43,19 +43,6 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         public Margins getPageMargins(int position);
     }
 
-    public class Margins{
-        public int mLeft;
-        public int mRight;
-        public int mTop;
-        public int mBottom;
-        public Margins(int left, int top, int right, int bottom){
-            mLeft = left;
-            mRight = right;
-            mTop = top;
-            mBottom = bottom;
-        }
-    }
-
     public interface IconTabProvider {
         public <T extends Object> T getPageIcon(int position);
         public <T extends Object> T getPageSelectIcon(int position);
