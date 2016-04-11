@@ -8,11 +8,13 @@ Android AdvancedPagerSlidingTabStrip是一种Android平台的导航控件，完�
  * 支持使用Bitmap、Drawable和本地resId来显示Tab图标
  * 支持对Tab图标替换成自定义View来加载网络图片
  * 支持自由设置小圆点、tab大小和位置等设置
+ * 支持实现如：微博等不均匀Tab的APP风格，并支持滑动
 
 Project site： <https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip>.
 
-最新版本:v1.3.0
+最新版本:v1.4.0
 
+效果图：
 
 ![p1](https://raw.githubusercontent.com/HomHomLin/AdvancedPagerSlidingTabStrip/master/Pic/Screen_20160216163404.png)
 
@@ -20,11 +22,13 @@ Project site： <https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip>.
 
 ![p3](https://raw.githubusercontent.com/HomHomLin/AdvancedPagerSlidingTabStrip/master/Pic/Screen_20160216163452.png)
 
+![p4](https://raw.githubusercontent.com/HomHomLin/AdvancedPagerSlidingTabStrip/master/Pic/Screen_20160411141706.png)
+
 ##导入项目
 
 **Gradle dependency:**
 ``` groovy
-compile 'homhomlin.lib:apsts:1.3.0'
+compile 'homhomlin.lib:apsts:1.4.0'
 ```
 
 or
@@ -34,7 +38,7 @@ or
 <dependency>
   <groupId>homhomlin.lib</groupId>
   <artifactId>apsts</artifactId>
-  <version>1.3.0</version>
+  <version>1.4.0</version>
 </dependency>
 ```
 
