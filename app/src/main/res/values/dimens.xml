@@ -5,4 +5,5 @@
     <dimen name="weibo_tab_size">30dp</dimen>
 
     <dimen name="button_drawable_padding">360dip</dimen>
+    <dimen name="home_bar_icon_margins">15dp</dimen>
 </resources>

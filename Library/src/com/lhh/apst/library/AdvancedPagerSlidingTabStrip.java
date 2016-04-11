@@ -43,6 +43,12 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         public Margins getPageMargins(int position);
     }
 
+    public  interface TipsProvider {
+        public int[] getTipsRule(int position);
+        public Margins getTipsMargins(int position);
+        public Drawable getTipsDrawable(int position);
+    }
+
     public interface IconTabProvider {
         public <T extends Object> T getPageIcon(int position);
         public <T extends Object> T getPageSelectIcon(int position);
@@ -295,13 +301,37 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         dot.setSingleLine();
         dot.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.psts_dot_txt_size));
         //16 new
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            dot.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.apsts_tips, null));
-        }else{
-            dot.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.apsts_tips, null));
+        Drawable dot_drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.apsts_tips, null);
+
+
+        boolean hasRule = false;
+        layoutParams.setMargins(0, 0, getResources().getDimensionPixelSize(R.dimen.psts_dot_m_right), 0);
+        if(pager.getAdapter() instanceof TipsProvider){
+            TipsProvider tipsProvider = (TipsProvider)pager.getAdapter();
+            for(Integer rule : tipsProvider.getTipsRule(position)){
+                layoutParams.addRule(rule);
+                hasRule = true;
+            }
+            Margins margins = tipsProvider.getTipsMargins(position);
+            if(margins != null) {
+                layoutParams.setMargins(margins.mLeft, margins.mTop, margins.mRight, margins.mBottom);
+            }
+            Drawable drawable = tipsProvider.getTipsDrawable(position);
+            if(drawable != null){
+                dot_drawable = drawable;
+
+            }
         }
-        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-        layoutParams.setMargins(0, getResources().getDimensionPixelSize(R.dimen.psts_dot_m_top), getResources().getDimensionPixelSize(R.dimen.psts_dot_m_right), 0);
+
+        if(!hasRule){
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        }
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            dot.setBackground(dot_drawable);
+        }else{
+            dot.setBackgroundDrawable(dot_drawable);
+        }
         dot.setLayoutParams(layoutParams);
 
         tab.addView(txt);
@@ -401,14 +431,36 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         dot.setGravity(Gravity.CENTER);
         dot.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.psts_dot_txt_size));
         dot.setSingleLine();
-        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
-            dot.setBackground(ResourcesCompat.getDrawable(getResources(), R.drawable.apsts_tips, null));
-        }else {
-            dot.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.apsts_tips, null));
-        }
-        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-        layoutParams.setMargins(0, 0, getResources().getDimensionPixelSize(R.dimen.psts_dot_m_right), 0);
 
+        Drawable dot_drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.apsts_tips, null);
+
+        boolean hasRule = false;
+        layoutParams.setMargins(0, 0, getResources().getDimensionPixelSize(R.dimen.psts_dot_m_right), 0);
+        if(pager.getAdapter() instanceof TipsProvider){
+            TipsProvider tipsProvider = (TipsProvider)pager.getAdapter();
+            for(Integer rule : tipsProvider.getTipsRule(position)){
+                layoutParams.addRule(rule);
+                hasRule = true;
+            }
+            Margins margins = tipsProvider.getTipsMargins(position);
+            if(margins != null) {
+                layoutParams.setMargins(margins.mLeft, margins.mTop, margins.mRight, margins.mBottom);
+            }
+            Drawable drawable = tipsProvider.getTipsDrawable(position);
+            if(drawable != null){
+                dot_drawable = drawable;
+
+            }
+        }
+
+        if(!hasRule){
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        }
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            dot.setBackground(dot_drawable);
+        }else{
+            dot.setBackgroundDrawable(dot_drawable);
+        }
         dot.setLayoutParams(layoutParams);
 
         tab.addView(txt);
@@ -464,10 +516,36 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         dot.setGravity(Gravity.CENTER);
         dot.setTextSize(TypedValue.COMPLEX_UNIT_PX, getResources().getDimensionPixelSize(R.dimen.psts_dot_txt_size));
         dot.setSingleLine();
-        dot.setBackgroundDrawable(ResourcesCompat.getDrawable(getResources(), R.drawable.apsts_tips, null));
-        layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
-        layoutParams.setMargins(0, 0, getResources().getDimensionPixelSize(R.dimen.psts_dot_m_right), 0);
+        Drawable dot_drawable = ResourcesCompat.getDrawable(getResources(), R.drawable.apsts_tips, null);
 
+        boolean hasRule = false;
+        layoutParams.setMargins(0, 0, getResources().getDimensionPixelSize(R.dimen.psts_dot_m_right), 0);
+        if(pager.getAdapter() instanceof TipsProvider){
+            TipsProvider tipsProvider = (TipsProvider)pager.getAdapter();
+            for(Integer rule : tipsProvider.getTipsRule(position)){
+                layoutParams.addRule(rule);
+                hasRule = true;
+            }
+            Margins margins = tipsProvider.getTipsMargins(position);
+            if(margins != null) {
+                layoutParams.setMargins(margins.mLeft, margins.mTop, margins.mRight, margins.mBottom);
+            }
+            Drawable drawable = tipsProvider.getTipsDrawable(position);
+            if(drawable != null){
+                dot_drawable = drawable;
+
+            }
+        }
+
+        if(!hasRule){
+            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        }
+
+        if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
+            dot.setBackground(dot_drawable);
+        }else{
+            dot.setBackgroundDrawable(dot_drawable);
+        }
         dot.setLayoutParams(layoutParams);
 
         tab.addView(txt);
