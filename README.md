@@ -1,12 +1,13 @@
 # Android AdvancedPagerSlidingTabStrip
 
-Android AdvancedPagerSlidingTabStrip是一种Android平台的导航控件，完美兼容Android自带库和兼容库的`ViewPager`组件。
+Android AdvancedPagerSlidingTabStrip是一种Android平台的导航控件，完美兼容Android自带库和兼容库的`ViewPager`组件，最低支持Android api v9。
 
 ## Feature
  * 支持Tab小圆点以及数量显示和隐藏
  * 支持自定义Tab View
  * 支持使用Bitmap、Drawable和本地resId来显示Tab图标
  * 支持对Tab图标替换成自定义View来加载网络图片
+ * 支持自由设置小圆点、tab大小和位置等设置
 
 Project site： <https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip>.
 
@@ -43,7 +44,7 @@ or
 基本AdvancedPagerPagerSlidingTabStrip：
 
 在需要添加的界面xml中添加组件和ViewPager
-
+``` xml
     <com.lhh.apst.library.AdvancedPagerSlidingTabStrip
         android:id="@+id/tabs"
         android:layout_width="match_parent"
@@ -66,30 +67,34 @@ or
         <item name="apTabDrawMode">text</item>
         <item name="apTabTextSelectColor">@color/home_bar_text_push</item>
     </style>
-
+```
 在代码中find该组件，并且设置adapter和ViewPager。
-
+``` java
     ViewPager pager = (ViewPager) findViewById(R.id.pager);
     pager.setAdapter(new TestAdapter(getSupportFragmentManager()));
 
 
     AdvancedPagerSlidingTabStrip tabs = (AdvancedPagerSlidingTabStrip) findViewById(R.id.tabs);
     tabs.setViewPager(pager);
-
+```
 
 AdvancedPagerSlidingTabStrip支持绑定OnPageChangeListener，并且不影响使用效果。
 
+``` java
     tabs.setOnPageChangeListener(mPageChangeListener);
+```
 
 通过调用AdvancedPagerSlidingTabStrip的showDot(int index)和hideDot（int index）来显示或者隐藏Tab上的小圆点，index代表需要显示和隐藏的tab序列位置（0 ~ N）。
 
 通过调用showDot(int index,String txt)方法可以显示小圆点文字，并同样通过hideDot来隐藏。如：
 
+``` java
     tabs.showDot(0, “99+”);
+```
 
 ## Tab显示模式
 
-一、基本Adapter显示
+* 基本Adapter显示
 
   1.纯文本显示
 
@@ -109,13 +114,68 @@ AdvancedPagerSlidingTabStrip支持绑定OnPageChangeListener，并且不影响�
 
   你可以直接创建并返回ImageView对象，也可以返回其他View子类，该模式可以用于显示网络图片，需要注意的是你需要手动给View添加LayoutParams来控制其大小，并只能使用RelativeLayout.LayoutParams，具体实现方式可以查看[Demo](https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip/blob/master/app/src/main/java/com/lhh/apst/advancedpagerslidingtabstrip/ViewTabActivity.java)。
 
-二、自定义Tab
+* 自定义Tab
 
   我知道以上模式可能并不能完全满足需求，有时候可能我们需要的是更复杂的Tab，所以添加自定义tab来满足各种各样的需求。
 
   当前自定义tab被封装到另一个tab类中，通过使用CustomPagerSlidingTabStrip控件来实现，该控件的所有使用方法和AdvancedPagerSlidingTabStrip一致。
 
   通过将Adapter实现CustomPagerSlidingTabStrip.CustomTabProvider并实现其中getSelectTabView（选中的View）和getDisSelectTabView（未选中的View）方法来实现自定义Tab，两个方法同样会回调上一次使用的View缓存对象。具体实现方式可以查看[Demo](https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip/blob/master/app/src/main/java/com/lhh/apst/advancedpagerslidingtabstrip/CustomTabActivity.java)。
+  
+## 拓展的Provider显示设置
+
+  有时候我们不使用自定义View显示模式又想调整现有的Tab，比如设置小圆点位置、tab大小和间距等来满足原有就可以实现的需求。
+
+  AdvancedPagerSlidingTabStrip提供了几个Provider来实现这些功能，你可以通过将你的Adapter实现定制的接口方法来实现。
+
+* AdvancedPagerSlidingTabStrip.LayoutProvider
+
+通过将Adapter实现AdvancedPagerSlidingTabStrip.LayoutProvider可以实现对Tab以及内容icon的Layout设置。
+
+AdvancedPagerSlidingTabStrip.LayoutProvider提供如下几个方法：
+
+ ``` java
+ public float getPageWeight(int position);
+ ```
+
+ 该方法用于设置每个pageTab在整个tabs中的权重。
+
+``` java
+public int[] getPageRule(int position);
+```
+
+该方法用于设置每个tab的相对位置，如将tab设置为靠左：return new int[]{
+                                RelativeLayout.ALIGN_PARENT_LEFT};。
+
+ ``` java
+ public Margins getPageMargins(int position);
+ ```
+
+ 该方法用于设置每个tab的间距大小，如将tab设置为距离左边距30px：return  new Margins(30,0,0,0);。
+
+ * AdvancedPagerSlidingTabStrip.TipsProvider
+
+通过将Adapter实现AdvancedPagerSlidingTabStrip.TipsProvider可以实现对小圆点的设置。
+
+AdvancedPagerSlidingTabStrip.TipsProvider提供如下几个方法：
+
+ ``` java
+ public int[] getTipsRule(int position);
+ ```
+
+ 该方法用于设置小圆点的相对位置。
+
+
+ ``` java
+public Margins getTipsMargins(int position);
+ ```
+
+ 该方法用于设置小圆点在tab中的间距大小。
+
+``` java
+public Drawable getTipsDrawable(int position);
+```
+ 该方法用于设置小圆点的背景，默认为红色圆角图。
 
 ## XML样式参数
 
