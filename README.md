@@ -126,13 +126,11 @@ AdvancedPagerSlidingTabStrip支持绑定OnPageChangeListener，并且不影响�
 
   有时候我们不使用自定义View显示模式又想调整现有的Tab，比如设置小圆点位置、tab大小和间距等来满足原有就可以实现的需求。
 
-  AdvancedPagerSlidingTabStrip提供了几个Provider来实现这些功能，你可以通过将你的Adapter实现定制的接口方法来实现。
+  AdvancedPagerSlidingTabStrip提供了几个Provider来实现这些功能，你可以通过将你的Adapter实现定制的接口方法来实现，具体可以查看demo中的WeiboTabActivity.java。
 
 * AdvancedPagerSlidingTabStrip.LayoutProvider
 
 通过将Adapter实现AdvancedPagerSlidingTabStrip.LayoutProvider可以实现对Tab以及内容icon的Layout设置。
-
-AdvancedPagerSlidingTabStrip.LayoutProvider提供如下几个方法：
 
  ``` java
  public float getPageWeight(int position);
@@ -156,8 +154,6 @@ public int[] getPageRule(int position);
  * AdvancedPagerSlidingTabStrip.TipsProvider
 
 通过将Adapter实现AdvancedPagerSlidingTabStrip.TipsProvider可以实现对小圆点的设置。
-
-AdvancedPagerSlidingTabStrip.TipsProvider提供如下几个方法：
 
  ``` java
  public int[] getTipsRule(int position);
@@ -198,9 +194,6 @@ public Drawable getTipsDrawable(int position);
 ## Developed By
 
  * Linhonghong - <linhh90@163.com>
-
- 该组件基于Andreas Stuetz的PagerSlidingTabStrip[Github](https://github.com/astuetz/PagerSlidingTabStrip/)
-
 
 ##License
 Copyright 2016 LinHongHong
