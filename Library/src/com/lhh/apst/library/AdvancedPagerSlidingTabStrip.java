@@ -273,11 +273,11 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         tab.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                scrollToChild(position, 0);
-                pager.setCurrentItem(position);
                 if(mOnTabClickListener != null){
                     mOnTabClickListener.onClick(position);
                 }
+                scrollToChild(position, 0);
+                pager.setCurrentItem(position);
             }
         });
 
@@ -395,11 +395,11 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         tab.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                scrollToChild(position, 0);
-                pager.setCurrentItem(position);
                 if(mOnTabClickListener != null){
                     mOnTabClickListener.onClick(position);
                 }
+                scrollToChild(position, 0);
+                pager.setCurrentItem(position);
             }
         });
 
@@ -491,11 +491,11 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         tab.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View v) {
-                scrollToChild(position, 0);
-                pager.setCurrentItem(position);
                 if(mOnTabClickListener != null){
                     mOnTabClickListener.onClick(position);
                 }
+                scrollToChild(position, 0);
+                pager.setCurrentItem(position);
             }
         });
 

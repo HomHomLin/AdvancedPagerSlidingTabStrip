@@ -419,11 +419,11 @@ public class CustomPagerSlidingTabStrip extends HorizontalScrollView {
         @Override
         public void onClick(View view) {
             int tag = (int)view.getTag(R.id.tag_position);
-            scrollToChild(tag, 0);
-            pager.setCurrentItem(tag);
             if(mOnTabClickListener != null){
                 mOnTabClickListener.onClick(tag);
             }
+            scrollToChild(tag, 0);
+            pager.setCurrentItem(tag);
         }
     }
 
