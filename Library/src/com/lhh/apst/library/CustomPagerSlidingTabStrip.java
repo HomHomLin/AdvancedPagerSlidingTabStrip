@@ -73,6 +73,10 @@ public class CustomPagerSlidingTabStrip extends HorizontalScrollView {
 //    private int tabBackgroundResId;
 
     private Locale locale;
+    private OnTabClickListener mOnTabClickListener;
+    public interface OnTabClickListener{
+        public void onClick(int pos);
+    }
 
     public CustomPagerSlidingTabStrip(Context context) {
         this(context, null);
@@ -146,6 +150,10 @@ public class CustomPagerSlidingTabStrip extends HorizontalScrollView {
         if(mSelectTabViewCache == null){
             mSelectTabViewCache = new SparseArray<>();
         }
+    }
+
+    public void setOnTabClickListener(OnTabClickListener onTabClickListener){
+        mOnTabClickListener = onTabClickListener;
     }
 
     public void setViewPager(ViewPager pager) {
@@ -413,6 +421,9 @@ public class CustomPagerSlidingTabStrip extends HorizontalScrollView {
             int tag = (int)view.getTag(R.id.tag_position);
             scrollToChild(tag, 0);
             pager.setCurrentItem(tag);
+            if(mOnTabClickListener != null){
+                mOnTabClickListener.onClick(tag);
+            }
         }
     }
 
