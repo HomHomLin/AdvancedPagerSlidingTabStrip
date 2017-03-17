@@ -335,7 +335,11 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         }
 
         if(!hasRule){
-            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+//            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+            layoutParams.addRule(RelativeLayout.ALIGN_RIGHT, R.id.id_tab_txt);
+            layoutParams.addRule(RelativeLayout.ALIGN_TOP, R.id.id_tab_txt);
+            int halfSize = getResources().getDimensionPixelSize(R.dimen.psts_dot_wh) / 2;
+            layoutParams.setMargins(0, -halfSize, -halfSize, 0);
         }
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
