@@ -338,8 +338,8 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
 //            layoutParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
             layoutParams.addRule(RelativeLayout.ALIGN_RIGHT, R.id.id_tab_txt);
             layoutParams.addRule(RelativeLayout.ALIGN_TOP, R.id.id_tab_txt);
-            int halfSize = getResources().getDimensionPixelSize(R.dimen.psts_dot_wh) / 2;
-            layoutParams.setMargins(0, -halfSize, -halfSize, 0);
+            int halfSize = getResources().getDimensionPixelSize(R.dimen.psts_dot_m_tv_right);
+            layoutParams.setMargins(0, 0, -halfSize, 0);
         }
 
         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.JELLY_BEAN) {
@@ -775,7 +775,11 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         }
 
         //绘制提示下划线
-        canvas.drawRect(lineLeft + currentTextViewLeft, height - indicatorHeight, lineLeft + currentTextViewRight , height, rectPaint);
+        int r = indicatorHeight / 2;
+        canvas.drawCircle(lineLeft + currentTextViewLeft + r,height - indicatorHeight + r,r,rectPaint);
+        canvas.drawCircle(lineLeft + currentTextViewRight - r,height - indicatorHeight + r,r,rectPaint);
+
+        canvas.drawRect(lineLeft + currentTextViewLeft + r, height - indicatorHeight, lineLeft + currentTextViewRight-r , height, rectPaint);
 
         // 分割线paint
 
