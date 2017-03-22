@@ -12,7 +12,7 @@ Android AdvancedPagerSlidingTabStrip是一种Android平台的导航控件，完�
 
 Project site： <https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip>.
 
-最新版本:v1.6.0
+最新版本:v1.8.0
 
 效果图：
 
@@ -28,7 +28,7 @@ Project site： <https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip>.
 
 **Gradle dependency:**
 ``` groovy
-compile 'homhomlin.lib:apsts:1.6.0'
+compile 'homhomlin.lib:apsts:1.8.0'
 ```
 
 or
@@ -38,7 +38,7 @@ or
 <dependency>
   <groupId>homhomlin.lib</groupId>
   <artifactId>apsts</artifactId>
-  <version>1.6.0</version>
+  <version>1.8.0</version>
 </dependency>
 ```
 
