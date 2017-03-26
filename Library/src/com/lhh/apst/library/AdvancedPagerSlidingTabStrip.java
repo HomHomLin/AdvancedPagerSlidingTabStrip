@@ -775,7 +775,7 @@ public class AdvancedPagerSlidingTabStrip extends HorizontalScrollView {
         }
 
         //绘制提示下划线
-        int r = indicatorHeight / 2;
+        float r = ((float)indicatorHeight) / 2;
         canvas.drawCircle(lineLeft + currentTextViewLeft + r,height - indicatorHeight + r,r,rectPaint);
         canvas.drawCircle(lineLeft + currentTextViewRight - r,height - indicatorHeight + r,r,rectPaint);
 
