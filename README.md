@@ -24,7 +24,7 @@ Project site： <https://github.com/HomHomLin/AdvancedPagerSlidingTabStrip>.
 
 ![p4](https://raw.githubusercontent.com/HomHomLin/AdvancedPagerSlidingTabStrip/master/Pic/Screen_20160411141706.png)
 
-##导入项目
+## 导入项目
 
 **Gradle dependency:**
 ``` groovy
@@ -43,7 +43,7 @@ or
 ```
 
 
-##用法
+## 用法
 
 基本AdvancedPagerPagerSlidingTabStrip：
 
@@ -199,7 +199,7 @@ public Drawable getTipsDrawable(int position);
 
  * Linhonghong - <linhh90@163.com>
 
-##License
+## License
 Copyright 2016 LinHongHong
 
 Licensed under the Apache License, Version 2.0 (the "License");
